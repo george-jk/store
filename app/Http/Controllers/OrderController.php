@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Product;
+use App\Order;
 use Illuminate\Http\Request;
 
-class ProductsController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        return Product::all();
+        return Order::all();
     }
 
     /**
@@ -35,36 +35,35 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        return Product::create($request->validate([
-            'name'=>['required','min:3','max:255'],
-            'manifacture'=>['required','min:2','max:255'],
-            'description'=>['required','min:3'],
-            'exserpt_description'=>['required','min:3','max:255'],
-            'category_id'=>'required',
-            'price'=>['required','numeric'],
-            'currency'=>['required','max:255'],
-            'image_id'=>'required'
-        ]));
+        $request->validate([
+            'user_id'=>['required','exists:users,id'],
+            'products'=>['required','exists:products,id']
+        ]);
+
+        $order=Order::create(['user_id'=>$request->user_id]);
+        $order->product()->attach(request('products'));
+        dd('done');
+        return(redirect('/categories'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Product  $product
+     * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Order $order)
     {
-        return $product;
+        return $order->product;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Product  $product
+     * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Order $order)
     {
         //
     }
@@ -73,10 +72,10 @@ class ProductsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Product  $product
+     * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Order $order)
     {
         //
     }
@@ -84,16 +83,12 @@ class ProductsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Product  $product
+     * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Order $order)
     {
-        //
-    }
-
-    public function getCategory($id)
-    {
-        return Product::firstOrFail($id)->category;
+        $order->delete();
+        return('deleted');
     }
 }

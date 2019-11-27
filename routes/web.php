@@ -19,6 +19,7 @@ Route::get('/', function () {
 Route::resource('categories','CategoriesController')->names([
 'create'=>'categories.add',
 ]);
-Route::get('category/{id}','CategoriesController@getProducts');
+Route::get('category/{id}','CategoriesController@getProducts')->name('category.getProducts');
 Route::resource('products','ProductsController');
-Route::get('product/{id}','ProductsController@getCategory');
+Route::get('product/{id}','ProductsController@getCategory')->name('product.getCategory');
+Route::resource('orders','OrderController');
