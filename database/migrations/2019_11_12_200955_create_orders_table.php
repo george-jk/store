@@ -22,12 +22,15 @@ class CreateOrdersTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('order_id')->unsigned();
             $table->bigInteger('product_id')->unsigned();
+            $table->integer('quantity')->unsigned();
+            $table->bigInteger('dimension_id')->unsigned();
             $table->timestamps();
 
             $table->unique(['order_id','product_id']);
 
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('dimension_id')->references('id')->on('dimensions');
         });
     }
 

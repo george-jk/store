@@ -14,6 +14,7 @@ class OrderController extends Controller
      */
     public function index()
     {
+        $this->middleware('auth');
         return Order::all();
     }
 

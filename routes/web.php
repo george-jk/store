@@ -18,8 +18,11 @@ Route::get('/', function () {
 
 Route::resource('categories','CategoriesController')->names([
 'create'=>'categories.add',
-]);
+])->middleware('auth');
 Route::get('category/{id}','CategoriesController@getProducts')->name('category.getProducts');
 Route::resource('products','ProductsController');
 Route::get('product/{id}','ProductsController@getCategory')->name('product.getCategory');
 Route::resource('orders','OrderController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
