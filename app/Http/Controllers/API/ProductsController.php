@@ -37,6 +37,7 @@ class ProductsController extends Controller
      */
     public function show(Product $product)
     {
+        $product->images;
         return $product;
     }
 
@@ -72,4 +73,5 @@ class ProductsController extends Controller
     {
         //
     }
+
 }
