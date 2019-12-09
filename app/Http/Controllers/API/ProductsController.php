@@ -16,8 +16,8 @@ class ProductsController extends Controller
     public function index()
     {
         foreach (Product::all() as $product){
+            $product->images;
             $all[]=$product;
-            $product->images->find($product->image_id);
         }
         return $all;
     }
