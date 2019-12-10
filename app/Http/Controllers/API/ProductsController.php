@@ -17,9 +17,9 @@ class ProductsController extends Controller
     {
         foreach (Product::all() as $product){
             $product->images;
-            $all[]=$product;
+            $products[]=$product;
         }
-        return $all;
+        return $products;
     }
 
     /**
@@ -52,7 +52,11 @@ class ProductsController extends Controller
     
     public function search($request)
     {
-        return Product::where('name','like','%'.$request.'%')->get();
+        foreach (Product::where('name','like','%'.$request.'%')->get() as $product){
+            $product->images;
+            $products[]=$product;
+        }
+        return $products;
     }
 
     /**
