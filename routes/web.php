@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 
+
 Route::resource('categories','CategoriesController')->names([
 'create'=>'categories.add',
 ])->middleware('auth');
@@ -26,3 +27,4 @@ Route::resource('orders','OrderController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin', 'CategoriesController@admin');

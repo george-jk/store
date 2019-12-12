@@ -40,7 +40,7 @@ class CategoriesController extends Controller
             'category_description'=>'required',
             'parent'=>'required'
         ]));
-        return(redirect('/categories'));
+        return(redirect('/admin'));
     }
 
     /**
@@ -82,7 +82,7 @@ class CategoriesController extends Controller
             'category_description'=>'required',
             'parent'=>'required'
         ]));
-        return(redirect('categories/'.$category->id));
+        return(redirect('/admin'));
     }
 
     /**
@@ -106,5 +106,10 @@ class CategoriesController extends Controller
     public function getProducts($id)
     {
         return Category::find($id)->products;
+    }
+
+    public function admin()
+    {
+        return (view('admin.admin',['categories'=>Category::all()->sortBy('parent')]));
     }
 }
