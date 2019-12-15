@@ -96,4 +96,9 @@ class ProductsController extends Controller
     {
         return Product::firstOrFail($id)->category;
     }
+
+    public function admin()
+    {
+        return (view('products.index',['products'=>Product::all()]));
+    }
 }

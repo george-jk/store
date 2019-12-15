@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.admin')
 
 @section('content')
 @foreach($products as $product)

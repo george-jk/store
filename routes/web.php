@@ -18,7 +18,7 @@ Route::get('/', function () {
 
 
 Route::resource('categories','CategoriesController')->names([
-'create'=>'categories.add',
+'create'=>'category.create',
 ])->middleware('auth');
 Route::get('category/{id}','CategoriesController@getProducts')->name('category.getProducts');
 Route::resource('products','ProductsController');
@@ -27,4 +27,6 @@ Route::resource('orders','OrderController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/admin', 'CategoriesController@admin');
+Route::get('/admin', 'HomeController@index');
+Route::get('/admin/categories', 'CategoriesController@admin')->name('categories.admin');
+Route::get('/admin/products', 'ProductsController@admin')->name('products.admin');

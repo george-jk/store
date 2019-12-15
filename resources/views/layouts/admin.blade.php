@@ -34,7 +34,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li class="nav-tem">
+                            <a class="nav-link {{Request::path()=='admin/categories'?'disabled':''}}" href="{{route('categories.admin')}}">{{__('Меню')}}</a>
+                        </li>
+                        <li class="nav-tem">
+                            <a class="nav-link {{Request::path()=='admin/products'?'disabled':''}}" href="{{route('products.admin')}}">{{__('Артикули')}}</a>
+                        </li>
+                        <li class="nav-tem">
+                            <a class="nav-link" href="#">{{__('Поръчки')}}</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -74,22 +82,8 @@
     </nav>
 
     <main class="py-4">
-        <div class="container pt-2">
-            <div class="row">
+        <div class="container">
                 @yield('content')
-                <div class="col">
-                    
-                </div>
-                <div class="col">
-                    
-                </div>
-                <div class="col">
-                    
-                </div>
-                <div class="col">
-                    
-                </div>
-            </div>
         </div>
     </main>
 </div>

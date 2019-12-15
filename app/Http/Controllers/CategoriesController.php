@@ -110,6 +110,6 @@ class CategoriesController extends Controller
 
     public function admin()
     {
-        return (view('admin.admin',['categories'=>Category::all()->sortBy('parent')]));
+        return (view('categories.index',['categories'=>Category::all()->sortBy('parent')]));
     }
 }
