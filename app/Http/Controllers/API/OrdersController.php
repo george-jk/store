@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\Order;
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class OrdersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,17 +15,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return Order::all();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return (Order::all());
     }
 
     /**
@@ -37,12 +28,14 @@ class OrderController extends Controller
     {
         $request->validate([
             'user_id'=>['required','exists:users,id'],
-            'products'=>['required','exists:products,id']
+            'product_id'=>['required','exists:products,id'],
+            'quantity'=>['required'],
+            'dimension_id'=>['required','exists:dimensions,id'],
         ]);
-
+        dd($request);
         $order=Order::create(['user_id'=>$request->user_id]);
-        $order->product()->attach(request('products'));
-        dd('done');
+        $order->product()->attach($request->product_id,['quantity'=>$request->quantity,'dimension_id'=>$request->dimension_id]);
+        dd($order);
         return(redirect('/categories'));
     }
 
@@ -53,17 +46,6 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Order $order)
-    {
-        return $order->product;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Order $order)
     {
         //
     }
@@ -88,7 +70,6 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        $order->delete();
-        return('deleted');
+        //
     }
 }
