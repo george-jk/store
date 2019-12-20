@@ -32,7 +32,6 @@ class OrdersController extends Controller
             'quantity'=>['required'],
             'dimension_id'=>['required','exists:dimensions,id'],
         ]);
-        dd($request);
         $order=Order::create(['user_id'=>$request->user_id]);
         $order->product()->attach($request->product_id,['quantity'=>$request->quantity,'dimension_id'=>$request->dimension_id]);
         dd($order);
