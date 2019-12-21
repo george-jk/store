@@ -28,14 +28,20 @@ class OrdersController extends Controller
     {
         $request->validate([
             'user_id'=>['required','exists:users,id'],
-            'product_id'=>['required','exists:products,id'],
-            'quantity'=>['required'],
-            'dimension_id'=>['required','exists:dimensions,id'],
+            'order.*.product_id'=>['required','exists:products,id'],
+            'order.*.quantity'=>['required'],
+            'order.*.dimension_id'=>['required','exists:dimensions,id'],
         ]);
         $order=Order::create(['user_id'=>$request->user_id]);
-        $order->product()->attach($request->product_id,['quantity'=>$request->quantity,'dimension_id'=>$request->dimension_id]);
-        dd($order);
-        return(redirect('/categories'));
+        foreach ($request->order as $item) {
+            $order->product()->attach($item['product_id'],[
+                'quantity'=>$item['quantity'],
+                'dimension_id'=>$item['dimension_id']]);
+        }
+        return response()->json([
+            'success'=>'true',
+            'order_id'=>$order->id,
+        ]);
     }
 
     /**
@@ -46,7 +52,7 @@ class OrdersController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return $order->product;
     }
 
     /**
