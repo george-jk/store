@@ -4,7 +4,10 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Order;
+use App\User;
 use Illuminate\Http\Request;
+use App\Mail\OrderCreated;
+use Illuminate\Support\Facades\Mail;
 
 class OrdersController extends Controller
 {
@@ -38,6 +41,9 @@ class OrdersController extends Controller
                 'quantity'=>$item['quantity'],
                 'dimension_id'=>$item['dimension_id']]);
         }
+        $user=User::findOrFail($request->user_id);
+        Mail::to($user->email)
+        ->send(new OrderCreated(Order::find($order->id), $user->name));
         return response()->json([
             'success'=>'true',
             'order_id'=>$order->id,
