@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\Status;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -14,7 +15,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return Order::all();
+        return (view('orders.index',['orders'=>Order::all()]));
     }
 
     /**
@@ -35,15 +36,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'user_id'=>['required','exists:users,id'],
-            'products'=>['required','exists:products,id']
-        ]);
-
-        $order=Order::create(['user_id'=>$request->user_id]);
-        $order->product()->attach(request('products'));
-        dd('done');
-        return(redirect('/categories'));
+        
     }
 
     /**
@@ -54,7 +47,11 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        return $order->product;
+        $statuses=Status::all();
+        $order->product;
+        $order->user;
+        $order->status;
+        return (view('orders.show',['order'=>$order,'statuses'=>$statuses]));
     }
 
     /**
@@ -90,5 +87,12 @@ class OrderController extends Controller
     {
         $order->delete();
         return('deleted');
+    }
+
+    public function changeStatus(Request $request, Order $order)
+    {
+        $request->validate(['status'=>'unique:order_status,status_id,NULL,id,order_id,'.$order->id]);
+        $order->status()->attach($order->id,['status_id'=>$request->status]);
+        return(redirect(route('orders.show',[$order->id])));
     }
 }

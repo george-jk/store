@@ -40,7 +40,7 @@ class CategoriesController extends Controller
             'category_description'=>'required',
             'parent'=>'required'
         ]));
-        return(redirect('/admin'));
+        return(redirect('/admin/categories'));
     }
 
     /**

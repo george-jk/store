@@ -39,7 +39,8 @@ class OrdersController extends Controller
         foreach ($request->order as $item) {
             $order->product()->attach($item['product_id'],[
                 'quantity'=>$item['quantity'],
-                'dimension_id'=>$item['dimension_id']]);
+                'dimension_id'=>$item['dimension_id'],
+            ]);
         }
         $user=User::findOrFail($request->user_id);
         Mail::to($user->email)

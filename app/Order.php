@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-	protected $fillable=['product_id','user_id','quantity','dimension_id'];
+	protected $fillable=['product_id','user_id','status_id','quantity','dimension_id'];
 	
     public function product()
     {
@@ -14,6 +14,11 @@ class Order extends Model
         ->belongsToMany(Product::class)
         ->withPivot('quantity','dimension_id')
         ->withTimestamps();
+    }
+
+    public function status()
+    {
+        return $this->belongsToMany(Status::class)->withTimestamps();
     }
 
     public function user()

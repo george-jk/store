@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-<div class="span-3 d-inline-flex">
+<div class="d-inline-flex">
 	<div>
 		<p class="menu-label">
 			Редактиране
