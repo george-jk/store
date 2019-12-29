@@ -26,11 +26,12 @@
 					<td>{{$product->name}}</td>
 					<td>{{$product->price}}</td>
 					<td>{{$product->pivot->quantity}}</td>
-					<td>{{$totalPrice=+$product->pivot->quantity*$product->price}}</td>
+					<td>{{$sum=$product->pivot->quantity*$product->price}}</td>
+					{{$sum+=$sum}}
 				</tr>
 				@endforeach
 				<tr>
-					<th colspan="4">Невярно Общо: {{$totalPrice}}</th>
+					<th colspan="4">Невярно Общо: {{$sum}}</th>
 				</tr>
 			</tbody>
 		</table>
@@ -58,7 +59,7 @@
 	<div class="flex-row">
 		@if ($errors->any())
 		<div class="alert alert-danger" role="alert">
-		{{$errors->first('status')}}
+			{{$errors->first('status')}}
 		</div>
 		@endif
 		<form method="POST" action="{{route('orders.status-change',[$order->id])}}">
@@ -69,6 +70,10 @@
 					<option value="{{$status->id}}">{{$status->status}}</option>
 					@endforeach
 				</select>
+				<div class="form-check form-check-inline ml-3">
+					<input class="form-check-input" type="checkbox" name="sendMail" id="mailCheckbox" value="true">
+					<label class="form-check-label" for="mailCheckbox">Изпрати e-mail</label>
+				</div>
 				<button type="submit" class="btn btn-primary ml-2">Промени</button>
 			</div>
 		</form>

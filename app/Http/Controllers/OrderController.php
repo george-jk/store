@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\Status;
+use App\Mail\OrderStatus;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -93,6 +95,7 @@ class OrderController extends Controller
     {
         $request->validate(['status'=>'unique:order_status,status_id,NULL,id,order_id,'.$order->id]);
         $order->status()->attach($order->id,['status_id'=>$request->status]);
+        Mail::to($order->user->email)->send(new OrderStatus($order));
         return(redirect(route('orders.show',[$order->id])));
     }
 }
