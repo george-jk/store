@@ -74,7 +74,7 @@
 		<select class="form-control @error('image') is-invalid @enderror" id="image_id" name="image_id">
 			@foreach($images as $image)
 			<option value="{{$image->id}}" {{$image->id==$product->image_id?'selected':''}}>
-				{{$image->path}}/{{$image->id}}
+				{{$image->path}}
 			</option>
 			@endforeach
 		</select>
