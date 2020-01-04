@@ -85,7 +85,8 @@ class ProductsController extends Controller
      */
     public function update(ProductStore $request, Product $product)
     {
-        return $product->update($request->validated());
+        $product->update($request->validated());
+        return(redirect(route('products.admin')));
     }
 
     /**
