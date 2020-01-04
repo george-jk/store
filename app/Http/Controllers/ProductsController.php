@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\Category;
+use App\Image;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProductStore;
 
 class ProductsController extends Controller
 {
@@ -66,7 +69,11 @@ class ProductsController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $product->category;
+        $product->images;
+        $categories=Category::all();
+        $images=Image::all();
+        return (view('products.edit',['product'=>$product,'categories'=>$categories,'images'=>$images]));
     }
 
     /**
@@ -76,9 +83,9 @@ class ProductsController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductStore $request, Product $product)
     {
-        //
+        return $product->update($request->validated());
     }
 
     /**

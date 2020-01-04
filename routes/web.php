@@ -19,8 +19,9 @@ Route::get('/', function () {
 Auth::routes(['verify'=>true]);
 
 Route::prefix('admin')->group(function () {
-    Route::resource('orders','OrderController')->middleware('verified');
-    Route::post('orders/status-change/{order}','OrderController@changeStatus')->middleware('verified')->name('orders.status-change');
+	Route::resource('orders','OrderController')->middleware('verified');
+	Route::post('orders/status-change/{order}','OrderController@changeStatus')->middleware('verified')->name('orders.status-change');
+	Route::resource('products','ProductsController')->middleware('verified');
 });
 
 
@@ -28,7 +29,6 @@ Route::resource('categories','CategoriesController')->names([
 	'create'=>'category.create',
 ])->middleware('verified');
 Route::get('category/{id}','CategoriesController@getProducts')->name('category.getProducts');
-Route::resource('products','ProductsController');
 Route::get('product/{id}','ProductsController@getCategory')->name('product.getCategory');
 
 Route::get('/home', 'HomeController@index')->name('home');
