@@ -42,9 +42,17 @@
 		<label for="category">Категория</label>
 		<select class="form-control @error('category_id') is-invalid @enderror" id="category" name="category_id">
 			@foreach($categories as $category)
-			<option value="{{$category->id}}" {{$category->id==$product->category_id?'selected':''}}>
-				{{$category->category_title}}
-			</option>
+			@if($category->parent==0)
+			<optgroup label="{{$category->category_title}}">
+				@foreach($categories as $subcat)
+				@if($subcat->parent==$category->id)
+				<option value="{{$subcat->id}}" {{$subcat->id==$product->category_id?'selected':''}}>
+					{{$subcat->category_title}}
+				</option>
+				@endif
+				@endforeach
+			</optgroup>
+			@endif
 			@endforeach
 		</select>
 		@error('category_id')

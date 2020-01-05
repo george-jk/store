@@ -37,13 +37,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function order()
-    {
-        return $this->hasMany(Order::class);
-    }
-
     public function image()
     {
         return $this->hasMany(Image::class);
+    }
+
+    public function customer()
+    {
+        return $this->hasOne(Customer::class);
     }
 }

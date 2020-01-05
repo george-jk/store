@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-	protected $fillable=['product_id','user_id','status_id','quantity','dimension_id'];
+	protected $fillable=['product_id','customer_id','status_id','quantity','dimension_id'];
 	
     public function product()
     {
@@ -21,8 +21,8 @@ class Order extends Model
         return $this->belongsToMany(Status::class)->withTimestamps();
     }
 
-    public function user()
+    public function customer()
     {
-    	return $this->belongsTo(User::class);
+    	return $this->belongsTo(Customer::class);
     }
 }
