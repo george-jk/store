@@ -65,6 +65,7 @@ class OrdersController extends Controller
                 'dimension_id'=>$item['dimension_id'],
             ]);
         }
+        $order->status()->attach($order->id,['status_id'=>1]);
         // $user=User::findOrFail($request->user_id);
         // Mail::to($user->email)->send(new OrderCreated(Order::find($order->id), $user->name));
         return response()->json([

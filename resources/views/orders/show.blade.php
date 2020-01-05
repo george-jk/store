@@ -6,7 +6,7 @@
 		Поръчка №{{$order->id}} /{{$order->created_at}}
 	</div>
 	<div class="flex-row">
-		Потребител {{$order->user->name}}
+		Потребител {{$order->customer->name}}
 	</div>
 	<div class="flex-row">
 		<table class="table">

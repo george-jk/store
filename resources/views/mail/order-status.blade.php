@@ -1,7 +1,7 @@
 @component('mail::message')
 # Поръчката ви е приета
 
-Здравейте {{$order->user->name}},<br>
+Здравейте {{$order->customer->name}},<br>
 Статуса на поръчка №{{$order->id}}/{{$order->created_at}} е променен на 
 <b>{{$order->status()->latest()->first()->status}}</b>.<br>
 

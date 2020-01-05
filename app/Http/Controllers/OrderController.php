@@ -95,7 +95,7 @@ class OrderController extends Controller
     {
         $request->validate(['status'=>'unique:order_status,status_id,NULL,id,order_id,'.$order->id]);
         $order->status()->attach($order->id,['status_id'=>$request->status]);
-        Mail::to($order->user->email)->send(new OrderStatus($order));
+        Mail::to($order->customer->email)->send(new OrderStatus($order));
         return(redirect(route('orders.show',[$order->id])));
     }
 }
