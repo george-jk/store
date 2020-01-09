@@ -16,7 +16,10 @@ Route::get('/', function () {
 });
 
 
-Auth::routes(['verify'=>true]);
+Auth::routes([
+	'verify'=>true,
+	'register'=>false,
+]);
 
 Route::prefix('admin')->group(function () {
 	Route::resource('orders','OrderController')->middleware('verified');
