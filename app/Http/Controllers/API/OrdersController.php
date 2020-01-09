@@ -7,6 +7,7 @@ use App\Order;
 use App\User;
 use App\Customer;
 use Illuminate\Http\Request;
+use App\Http\Requests\OrderStore;
 use App\Mail\OrderCreated;
 use Illuminate\Support\Facades\Mail;
 
@@ -28,38 +29,17 @@ class OrdersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OrderStore $request)
     {
-        $request->validate([
-            'user_id'=>['nullable','exists:users,id'],
-            'name'=>['required','min:3','max:255'],
-            'family'=>['required','min:3','max:255'],
-            'phone'=>['required','min:6','max:12'],
-            'email'=>['email:rfc'],
-            'address'=>['required','min:3','max:255'],
-            'province'=>['required','min:3','max:255'],
-            'village'=>['required','min:3','max:255'],
-            'subscribe'=>['boolean'],
-            'order.*.product_id'=>['required','exists:products,id'],
-            'order.*.quantity'=>['required'],
-            'order.*.dimension_id'=>['required','exists:dimensions,id'],
-        ]);
+        $validated=$request->validated();
         if ($request->user_id==null) {
-            $customer=Customer::create([
-                'name'=>$request->name,
-                'family'=>$request->family,
-                'phone'=>$request->phone,
-                'email'=>$request->email,
-                'address'=>$request->address,
-                'province'=>$request->province,
-                'village'=>$request->village,
-                'subscribe'=>$request->subscribe]);
+            $customer=Customer::create($validated);
             $order=Order::create(['customer_id'=>$customer->id]);
         } else {
             $user=User::findOrFail($request->user_id);
             $order=Order::create(['customer_id'=>$user->customer->id]);
         }
-        foreach ($request->order as $item) {
+        foreach ($validated['order'] as $item) {
             $order->product()->attach($item['product_id'],[
                 'quantity'=>$item['quantity'],
                 'dimension_id'=>$item['dimension_id'],

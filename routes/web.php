@@ -25,9 +25,7 @@ Route::prefix('admin')->group(function () {
 });
 
 
-Route::resource('categories','CategoriesController')->names([
-	'create'=>'category.create',
-])->middleware('verified');
+Route::resource('categories','CategoriesController')->names(['create'=>'category.create',])->middleware('verified');
 Route::get('category/{id}','CategoriesController@getProducts')->name('category.getProducts');
 Route::get('product/{id}','ProductsController@getCategory')->name('product.getCategory');
 
