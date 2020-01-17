@@ -11,12 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-	dd('hit');
-	return view('welcome');
-});
-
-
 Auth::routes([
 	'verify'=>true,
 	'register'=>false,
@@ -33,6 +27,7 @@ Route::resource('categories','CategoriesController')->names(['create'=>'category
 Route::get('category/{id}','CategoriesController@getProducts')->name('category.getProducts');
 Route::get('product/{id}','ProductsController@getCategory')->name('product.getCategory');
 
+Route::get('/', 'HomeController@welcome');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin', 'HomeController@index');
 Route::get('/admin/categories', 'CategoriesController@admin')->name('categories.admin')->middleware('verified');
