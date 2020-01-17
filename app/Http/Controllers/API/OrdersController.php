@@ -33,7 +33,17 @@ class OrdersController extends Controller
     {
         $validated=$request->validated();
         if ($request->user_id==null) {
-            $customer=Customer::create($validated);
+            if ($customer=Customer::where('email',$validated['email'])) {
+                if ($customer->phone==$validated['phone']) {
+                    dd($customer);
+                } else {
+                    dd('phone difference');
+                }
+            } else {
+                dd('new customer');
+                $customer=Customer::create($validated);
+            }
+            
             $order=Order::create(['customer_id'=>$customer->id]);
         } else {
             $user=User::findOrFail($request->user_id);
@@ -46,8 +56,7 @@ class OrdersController extends Controller
             ]);
         }
         $order->status()->attach($order->id,['status_id'=>1]);
-        // $user=User::findOrFail($request->user_id);
-        // Mail::to($user->email)->send(new OrderCreated(Order::find($order->id), $user->name));
+        Mail::to($user->email)->send(new OrderCreated(Order::find($order->id), $user->name));
         return response()->json([
             'success'=>'true',
             'order_id'=>$order->id,
