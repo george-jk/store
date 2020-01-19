@@ -33,3 +33,7 @@ Route::get('/admin', 'HomeController@index');
 Route::get('/admin/categories', 'CategoriesController@admin')->name('categories.admin')->middleware('verified');
 Route::get('/admin/products', 'ProductsController@admin')->name('products.admin')->middleware('verified');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

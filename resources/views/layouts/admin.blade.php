@@ -32,6 +32,7 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
+                    @auth
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-tem">
                             <a class="nav-link {{Request::path()==substr(route('categories.admin',[],false),1)?'disabled':''}}" href="{{route('categories.admin')}}">{{__('Меню')}}</a>
@@ -43,6 +44,7 @@
                             <a class="nav-link {{Request::path()==substr(route('orders.index',[],false),1)?'disabled':''}}" href="{{route('orders.index')}}">{{__('Поръчки')}}</a>
                         </li>
                     </ul>
+                    @endauth
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
@@ -81,7 +83,7 @@
 
     <main class="py-4">
         <div class="container">
-                @yield('content')
+            @yield('content')
         </div>
     </main>
 </div>
