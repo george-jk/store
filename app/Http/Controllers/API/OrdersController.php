@@ -32,20 +32,8 @@ class OrdersController extends Controller
     public function store(OrderStore $request)
     {
         $validated=$request->validated();
-        if ($request->user_id==null) {
-            if ($customer=Customer::where('email',$validated['email'])) {
-                if ($customer->phone==$validated['phone']) {
-                } else {
-                    $customer=Customer::create($validated);
-                }
-            } else {
-                $customer=Customer::create($validated);
-            }
-            $order=Order::create(['customer_id'=>$customer->id]);
-        } elseif ($user->auth()){
-            $user=User::findOrFail($request->user_id);
-            $order=Order::create(['customer_id'=>$user->customer->id]);
-        }
+        $customer=Customer::create($validated);
+        $order=Order::create(['customer_id'=>$customer->id]);
         foreach ($validated['order'] as $item) {
             $order->product()->attach($item['product_id'],[
                 'quantity'=>$item['quantity'],
@@ -53,7 +41,7 @@ class OrdersController extends Controller
             ]);
         }
         $order->status()->attach($order->id,['status_id'=>1]);
-        Mail::to($user->email)->send(new OrderCreated(Order::find($order->id), $user->name));
+        // Mail::to($user->email)->send(new OrderCreated(Order::find($order->id), $user->name));
         return response()->json([
             'success'=>'true',
             'order_id'=>$order->id,
