@@ -45,8 +45,9 @@ class OrdersController extends Controller
             }
             
             $order=Order::create(['customer_id'=>$customer->id]);
-        } else {
+        } elseif ($user->auth()){
             $user=User::findOrFail($request->user_id);
+            dd($user);
             $order=Order::create(['customer_id'=>$user->customer->id]);
         }
         foreach ($validated['order'] as $item) {
