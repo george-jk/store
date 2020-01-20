@@ -33,22 +33,17 @@ class OrdersController extends Controller
     {
         $validated=$request->validated();
         if ($request->user_id==null) {
-            dd('hit');
             if ($customer=Customer::where('email',$validated['email'])) {
                 if ($customer->phone==$validated['phone']) {
-                    dd($customer);
                 } else {
-                    dd('phone difference');
+                    $customer=Customer::create($validated);
                 }
             } else {
-                dd('new customer');
                 $customer=Customer::create($validated);
             }
-            
             $order=Order::create(['customer_id'=>$customer->id]);
         } elseif ($user->auth()){
             $user=User::findOrFail($request->user_id);
-            dd($user);
             $order=Order::create(['customer_id'=>$user->customer->id]);
         }
         foreach ($validated['order'] as $item) {
