@@ -33,6 +33,7 @@ class OrdersController extends Controller
     {
         $validated=$request->validated();
         if ($request->user_id==null) {
+            dd('hit');
             if ($customer=Customer::where('email',$validated['email'])) {
                 if ($customer->phone==$validated['phone']) {
                     dd($customer);
