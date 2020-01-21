@@ -6,15 +6,14 @@
 	<form method="post" action="{{route('categories.update',[$category->id])}}">
 		{{csrf_field()}}
 		@method('PUT')
-		<div class="field">
-			<label class="label">Category</label>
-			<div class="control">
-				<input class="input @error('category_title') is-danger @enderror" type="text" name="category_title" value="{{$category->category_title}}" required >
-				@error('category_title')
-					<p class="help is-danger">{{$errors->first('category_title')}}</p>
-				@enderror
-			</div>
-			<p class="help">Edit category name</p>
+		<div class="form-group">
+			<label for="category_title">Категория</label>
+			<input type="text" class="form-control @error('category_title') is-invalid @enderror" id="category_title" aria-describedby="nameHelp" name="category_title" value="{{$category->category_title}}" required>
+			<small id="nameHelp" class="form-text text-muted">Името на продукта се визуализира в менюто</small>
+			@error('category_title')
+			<small id="nameHelp" class="invalid-feedback">{{$errors->first('category_title')}}</small>
+			@enderror
+
 		</div>
 
 		<div class="field">
