@@ -22,11 +22,7 @@ class OrdersController extends Controller
     {
         return (Order::all());
     }
-    public function test()
-    {
-        echo "string";
-    }
-
+   
     /**
      * Store a newly created resource in storage.
      *
@@ -35,7 +31,6 @@ class OrdersController extends Controller
      */
     public function store(OrderStore $request)
     {
-        echo "string";
         $validated=$request->validated();
         $customer=Customer::create($validated);
         $order=Order::create(['customer_id'=>$customer->id]);
