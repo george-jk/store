@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
 // 	return $request->user();
 // });
 
-Route::post('test','API/OrdersController@test');
+Route::get('test','API\OrdersController@test');
 Route::apiResource('category','API\CategoryController');
 Route::apiResource('products','API\ProductsController');
 Route::get('products-cat/{category_id}','API\ProductsController@getByCategory');
