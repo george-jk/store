@@ -22,7 +22,7 @@ class OrdersController extends Controller
     {
         return (Order::all());
     }
-    public function test(Request $request)
+    public function test()
     {
         echo "string";
     }
