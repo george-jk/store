@@ -1,8 +1,9 @@
-@extends('layout')
+@extends('layouts.admin')
 @section('content')
 
+
 <div class="field">	
-	<form method="post" action="/categories/{{$category->id}}">
+	<form method="post" action="{{route('categories.update',[$category->id])}}">
 		{{csrf_field()}}
 		@method('PUT')
 		<div class="field">
