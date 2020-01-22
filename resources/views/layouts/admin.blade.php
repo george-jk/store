@@ -35,7 +35,7 @@
                     @auth
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-tem">
-                            <a class="nav-link {{Request::path()==substr(route('categories.admin',[],false),1)?'disabled':''}}" href="{{route('categories.admin')}}">{{__('Меню')}}</a>
+                            <a class="nav-link {{Request::path()==substr(route('categories.index',[],false),1)?'disabled':''}}" href="{{route('categories.index')}}">{{__('Меню')}}</a>
                         </li>
                         <li class="nav-tem">
                             <a class="nav-link {{Request::path()==substr(route('products.admin',[],false),1)?'disabled':''}}" href="{{route('products.admin')}}">{{__('Артикули')}}</a>

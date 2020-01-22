@@ -16,7 +16,6 @@ class CategoriesController extends Controller
     {
         return (view('categories.index',['categories'=>Category::all()->sortBy('parent')]));
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -82,7 +81,7 @@ class CategoriesController extends Controller
             'category_description'=>'required',
             'parent'=>'required'
         ]));
-        return(redirect('/admin'));
+        return(redirect(route('categories.index')));
     }
 
     /**
@@ -108,8 +107,4 @@ class CategoriesController extends Controller
         return Category::find($id)->products;
     }
 
-    public function admin()
-    {
-        return (view('categories.index',['categories'=>Category::all()->sortBy('parent')]));
-    }
 }

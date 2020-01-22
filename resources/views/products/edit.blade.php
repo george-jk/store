@@ -78,7 +78,7 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="iamge">Июображение</label>
+		<label for="iamge">Изображение</label>
 		<select class="form-control @error('image') is-invalid @enderror" id="image_id" name="image_id">
 			@foreach($images as $image)
 			<option value="{{$image->id}}" {{$image->id==$product->image_id?'selected':''}}>
