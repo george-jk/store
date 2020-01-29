@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Contact;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\ContactStore;
 
 class ContactsController extends Controller
 {
@@ -24,16 +25,14 @@ class ContactsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ContactStore $request)
     {
-        // $request->validate([
-        //     'name'=>['required','min:3','max:100'],
-        //     'phone'=>['required','min:8','max:16'],
-        //     'email'=>['required'],
-        //     'message'=>['required']
-        // ]);
-        $contact=Contact::create($request->all());
-        return 'success';
+
+        $contact=Contact::create($request->validated());
+        return response()->json([
+            'success'=>'true',
+            'id'=>$contact->id,
+        ]);
     }
 
     /**
@@ -44,7 +43,7 @@ class ContactsController extends Controller
      */
     public function show(Contact $contact)
     {
-        //
+        echo $contact;
     }
 
     /**
