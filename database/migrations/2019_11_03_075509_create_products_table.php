@@ -23,6 +23,7 @@ class CreateProductsTable extends Migration
             $table->bigInteger('category_id')->unsigned();
             $table->float('price');
             $table->string('currency');
+            $table->integer('stock')->unsigned()->default(0);
             $table->bigInteger('image_id')->unsigned();
             $table->timestamps();
 
