@@ -25,6 +25,7 @@ Route::prefix('admin')->group(function () {
 	Route::post('orders/status-change/{order}','OrderController@changeStatus')->middleware('verified')->name('orders.status-change');
 	Route::resource('products','ProductsController')->middleware('verified');
 	Route::resource('categories','CategoriesController')->middleware('verified');
+	Route::resource('image','ImageController')->middleware('verified');
 });
 
 

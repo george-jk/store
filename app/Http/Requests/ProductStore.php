@@ -24,6 +24,7 @@ class ProductStore extends FormRequest
     public function rules()
     {
         return [
+            'visible'=>['required'],
             'name'=>['required','min:3','max:255'],
             'manifacture'=>['required','min:2','max:255'],
             'description'=>['required','min:3'],
@@ -31,6 +32,7 @@ class ProductStore extends FormRequest
             'category_id'=>['required','exists:categories,id'],
             'price'=>['required','numeric'],
             'currency'=>['required','max:255'],
+            'stock'=>['required','numeric','min:0'],
             'image_id'=>'required',
         ];
     }
@@ -58,6 +60,9 @@ class ProductStore extends FormRequest
             'category_id.exists' => 'Категорията не съществува',
             'price.required' => 'Задължително поле',
             'price.numeric' => 'Използвай само цифри',
+            'stock.required' => 'Задължително поле',
+            'stock.numeric' => 'Използвай само цифри',
+            'stock.min' => 'Невалидна стойност (>=0)',
 
         ];
     }

@@ -16,6 +16,7 @@ class CreateProductsTable extends Migration
         Schema::enableForeignKeyConstraints();
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->boolean('visible')->default(0);
             $table->string('name');
             $table->string('manifacture');
             $table->text('description');
@@ -23,6 +24,7 @@ class CreateProductsTable extends Migration
             $table->bigInteger('category_id')->unsigned();
             $table->float('price');
             $table->string('currency');
+            $table->integer('stock')->unsigned()->default(0);
             $table->bigInteger('image_id')->unsigned();
             $table->timestamps();
 

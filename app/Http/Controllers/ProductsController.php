@@ -27,7 +27,9 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //
+        $categories=Category::all();
+        $images=Image::all();
+        return(view('products.create',['categories'=>$categories,'images'=>$images]));
     }
 
     /**
@@ -39,6 +41,7 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
         return Product::create($request->validate([
+            'visible'=>['required'],
             'name'=>['required','min:3','max:255'],
             'manifacture'=>['required','min:2','max:255'],
             'description'=>['required','min:3'],
@@ -46,6 +49,7 @@ class ProductsController extends Controller
             'category_id'=>'required',
             'price'=>['required','numeric'],
             'currency'=>['required','max:255'],
+            'stock'=>['required','numeric','min:0'],
             'image_id'=>'required'
         ]));
     }
@@ -107,6 +111,6 @@ class ProductsController extends Controller
 
     public function admin()
     {
-        return (view('products.index',['products'=>Product::all()]));
+        return (view('products.index',['products'=>Product::paginate(6)]));
     }
 }
