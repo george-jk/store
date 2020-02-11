@@ -12,6 +12,15 @@
 					<form method="post" action="{{route('products.store')}}">
 						{{csrf_field()}}
 						<div class="form-row">
+							<div class="form-check">
+								<input type="hidden" name="visible" value="0">
+								<input class="form-check-input" type="checkbox" name="visible" value="1" id="visibleCheck">
+								<label class="form-check-label" for="visibleCheck">
+									{{__('Видим')}}
+								</label>
+							</div>
+						</div>
+						<div class="form-row">
 							<div class="col">
 								<label for="name">Продукт</label>
 								<input type="text" class="form-control @error('name') is-invalid @enderror" id="name" aria-describedby="nameHelp" name="name" required>
