@@ -20,6 +20,7 @@
 				</tr>
 			</thead>
 			<tbody>
+				<?php $totall=0 ?>
 				@foreach ($order->product as $product)
 				<tr>
 					<th scope="row">{{++$loop->index}}</th>
@@ -27,11 +28,11 @@
 					<td>{{$product->price}}</td>
 					<td>{{$product->pivot->quantity}}</td>
 					<td>{{$sum=$product->pivot->quantity*$product->price}}</td>
-					{{$sum+=$sum}}
 				</tr>
+				<?php $totall+=$product->pivot->quantity*$product->price ?>
 				@endforeach
 				<tr>
-					<th colspan="4">Невярно Общо: {{$sum}}</th>
+					<th colspan="4">Общо: {{$totall}}</th>
 				</tr>
 			</tbody>
 		</table>
