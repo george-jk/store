@@ -35,11 +35,12 @@ class CategoriesController extends Controller
     public function store(Request $request)
     {
         Category::create($request->validate([
+            'visible'=>'required',
             'category_title'=>['required','min:3','max:255','unique:categories,category_title'],
             'category_description'=>'required',
             'parent'=>'required'
         ]));
-        return(redirect('/admin/categories'));
+        return(redirect(route('categories.index')));
     }
 
     /**
@@ -77,6 +78,7 @@ class CategoriesController extends Controller
     public function update(Request $request, Category $category)
     {
         $category->update($request->validate([
+            'visible'=>'required',
             'category_title'=>['required','min:3','max:255'],
             'category_description'=>'required',
             'parent'=>'required'

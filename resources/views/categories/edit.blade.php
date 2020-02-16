@@ -12,6 +12,15 @@
 					<form method="post" action="{{route('categories.update',[$category->id])}}">
 						{{csrf_field()}}
 						@method('PUT')
+						<div class="form-row">
+							<div class="form-check">
+								<input type="hidden" name="visible" value="0">
+								<input class="form-check-input" type="checkbox" name="visible" value="1" id="visibleCheck" {{$category->visible==1?'checked':''}}>
+								<label class="form-check-label" for="visibleCheck">
+									{{__('Видим')}}
+								</label>
+							</div>
+						</div>
 						<div class="form-group">
 							<label for="category_title">Категория</label>
 							<input type="text" class="form-control @error('category_title') is-invalid @enderror" id="category_title" aria-describedby="nameHelp" name="category_title" value="{{$category->category_title}}" required>

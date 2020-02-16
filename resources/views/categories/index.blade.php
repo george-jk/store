@@ -21,7 +21,9 @@
 								<li class="nav-item pl-3">
 									<ul class="nav flex-column">
 										<li class="nav-item border-left">
-											<a class="nav-link text-secondary" href="{{route('categories.edit',[$sub->id])}}">{{$sub->category_title}}</a>
+											<a class="nav-link text-secondary {{$sub->visible==0?'mark':''}}" href="{{route('categories.edit',[$sub->id])}}">
+												{{$sub->category_title}}
+											</a>
 										</li>
 									</ul>
 								</li>
