@@ -5,9 +5,9 @@
 	<div class="row justify-content-center">
 		<div class="col-md-6">
 			<div class="card mb-2">
-				<h5 class="card-header text-center">
+				<div class="card-header text-center">
 					{{ __('Промяна') }}
-				</h5>
+				</div>
 				<div class="card-body">
 					<ul class="list-group list-group-flush">
 						@foreach($products as $product)
@@ -17,27 +17,29 @@
 						@endforeach
 					</ul>
 				</div>
-				<div class="card-footer text-center">
-					{{$products->links()}}	
+				<div class="card-footer">
+					<div class="row justify-content-center">
+						{{$products->links()}}	
+					</div>
 				</div>
 			</div>
 		</div>
 		<div class="col-md-4">
 			<div class="card mb-2">
-				<h5 class="card-header text-center">
+				<div class="card-header text-center">
 					{{ __('Добавяне') }}
-				</h5>
+				</div>
 				<div class="card-body">
-					<h6 class="card-title">
+					<p class="card-title">
 						Добавяне на продукт
-					</h6>
+					</p>
 					<a class="btn btn-primary" href="{{route('products.create')}}">{{ __('Добавяне') }}</a>
 				</div>
-			
+				
 				<div class="card-body">
-					<h6 class="card-title">
+					<p class="card-title">
 						Добавяне на изображение
-					</h6>
+					</p>
 					<a class="btn btn-primary" href="{{route('image.create')}}">{{ __('Добавяне') }}</a>
 				</div>
 			</div>
