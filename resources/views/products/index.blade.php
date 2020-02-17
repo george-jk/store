@@ -12,7 +12,7 @@
 					<ul class="list-group list-group-flush">
 						@foreach($products as $product)
 						<li class="list-group-item list-group-item-action">	
-							<a href="{{route('products.edit',$product->id)}}" class="list-group-item-action">{{$product->name}}</a>
+							<a href="{{route('products.edit',$product->id)}}" class="list-group-item-action {{$product->visible==0?'mark':''}}">{{$product->name}}</a>
 						</li>	
 						@endforeach
 					</ul>
