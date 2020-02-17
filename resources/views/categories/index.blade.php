@@ -14,7 +14,7 @@
 							@if($category->parent==0)
 							<ul class="nav flex-column">
 								<li class="nav-item">
-									<a class="nav-link text-secondary" href="{{route('categories.edit',[$category->id])}}">{{$category->category_title}}</a>
+									<a class="nav-link text-secondary {{$category->visible==0?'mark':''}}" href="{{route('categories.edit',[$category->id])}}">{{$category->category_title}}</a>
 								</li>
 								@foreach($categories as $sub)
 								@if($sub->parent==$category->id)
