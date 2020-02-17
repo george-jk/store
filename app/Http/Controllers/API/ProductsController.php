@@ -15,7 +15,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        foreach (Product::all() as $product){
+        foreach (Product::where('visible',1)->get() as $product){
             $product->images;
             $products[]=$product;
         }
