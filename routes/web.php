@@ -19,7 +19,6 @@ Auth::routes([
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin', 'HomeController@index');
-
 Route::prefix('admin')->group(function () {
 	Route::resource('orders','OrderController')->middleware('verified');
 	Route::post('orders/status-change/{order}','OrderController@changeStatus')->middleware('verified')->name('orders.status-change');
