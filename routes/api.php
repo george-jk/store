@@ -21,5 +21,6 @@ Route::apiResource('category','API\CategoryController');
 Route::apiResource('products','API\ProductsController');
 Route::get('products-cat/{category_id}','API\ProductsController@getByCategory');
 Route::get('search/{name}','API\ProductsController@search');
+Route::get('terms/{terms}','API\TermsController@show');
 Route::apiResource('order','API\OrdersController');
 Route::apiResource('contact','API\ContactsController');
