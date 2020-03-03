@@ -35,11 +35,14 @@ class TermsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function showGeneral($id)
     {
-        if ($id=='delivery') {
-        dd(DB::table('terms_of_delivery')->select('*')->get());
-        }     
+        return (DB::table('general_terms')->select('*')->where('id',$id)->get());     
+    }
+
+    public function showDelivery($id)
+    {
+        return (DB::table('terms_of_delivery')->select('*')->where('id',$id)->get());     
     }
 
     /**
