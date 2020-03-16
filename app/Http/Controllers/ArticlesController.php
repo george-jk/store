@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ArticlesController extends Controller
 {
@@ -14,7 +15,7 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        return Article::all()->get();
+        return view('articles.index', ['articles'=>Article::paginate(6)]);
     }
 
     /**
@@ -24,7 +25,7 @@ class ArticlesController extends Controller
      */
     public function create()
     {
-        //
+        return view('articles.create');
     }
 
     /**
@@ -35,7 +36,13 @@ class ArticlesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request['user_id']=Auth::id();
+        return Article::create($request->validate([
+            'visible'=>['required'],
+            'user_id'=>['required'],
+            'article_title'=>['required','min:3','max:255'],
+            'article_content'=>['required','min:3'],
+        ]));
     }
 
     /**
@@ -57,7 +64,7 @@ class ArticlesController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        return 'Edit coming soon...';
     }
 
     /**

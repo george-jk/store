@@ -45,6 +45,9 @@
                         <li class="nav-tem">
                             <a class="nav-link {{Request::path()==substr(route('orders.index',[],false),1)?'disabled':''}}" href="{{route('orders.index')}}">{{__('Поръчки')}}</a>
                         </li>
+                        <li class="nav-tem">
+                            <a class="nav-link {{Request::path()==substr(route('articles.index',[],false),1)?'disabled':''}}" href="{{route('articles.index')}}">{{__('Публикации')}}</a>
+                        </li>
                     </ul>
                     @endauth
                     <!-- Right Side Of Navbar -->
