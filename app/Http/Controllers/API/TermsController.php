@@ -39,10 +39,18 @@ class TermsController extends Controller
     {
         return (DB::table('general_terms')->select('*')->where('id',$id)->get());     
     }
+    public function lastGeneral()
+    {
+        return (DB::table('general_terms')->select('*')->orderByDesc('id')->limit(1)->get());
+    }
 
     public function showDelivery($id)
     {
         return (DB::table('terms_of_delivery')->select('*')->where('id',$id)->get());     
+    }
+    public function lastDelivery()
+    {
+        return (DB::table('terms_of_delivery')->select('*')->orderByDesc('id')->limit(1)->get());
     }
 
     /**
