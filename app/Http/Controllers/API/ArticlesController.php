@@ -15,7 +15,7 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        return Article::all();
+        return Article::where('visible',1)->get();
     }
 
     /**
@@ -37,12 +37,16 @@ class ArticlesController extends Controller
      */
     public function show(Article $article)
     {
-        // return $article;
-        return response()->json([
-            'article_title'=>$article->article_title,
-            'article_content'=>$article->article_content,
-            'created_at'=>$article->created_at->toDateTimeString(),
-        ]);
+        if ($article->visible) {
+            return response()->json([
+                'article_title'=>$article->article_title,
+                'article_content'=>$article->article_content,
+                'created_at'=>$article->created_at->toDateTimeString(),
+            ]); 
+        } else {
+            return response()->json(['message'=>'Not Found or Hidden!'],404);
+        }
+        
     }
 
     /**
