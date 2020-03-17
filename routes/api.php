@@ -25,5 +25,6 @@ Route::get('terms/general/{id}','API\TermsController@showGeneral');
 Route::get('terms/general','API\TermsController@lastGeneral');
 Route::get('terms/delivery/{id}','API\TermsController@showDelivery');
 Route::get('terms/delivery','API\TermsController@lastDelivery');
+Route::apiResource('article','API\ArticlesController')->only(['index','show']);
 Route::apiResource('order','API\OrdersController');
 Route::apiResource('contact','API\ContactsController');
