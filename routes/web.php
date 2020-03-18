@@ -26,6 +26,9 @@ Route::prefix('admin')->group(function () {
 	Route::resource('categories','CategoriesController')->middleware('verified');
 	Route::resource('image','ImageController')->middleware('verified');
 	Route::resource('articles','ArticlesController')->middleware('verified');
+	Route::get('terms/general','TermsController@indexGeneral')->middleware('verified')->name('terms.general');
+	Route::get('terms/delivery','TermsController@indexDelivery')->middleware('verified')->name('terms.delivery');
+	Route::resource('terms','TermsController')->middleware('verified');
 });
 
 
