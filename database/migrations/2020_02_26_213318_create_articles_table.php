@@ -17,11 +17,13 @@ class CreateArticlesTable extends Migration
             $table->bigIncrements('id');
             $table->boolean('visible')->default(0);
             $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->bigInteger('categories_id')->unsigned()->nullable();
             $table->string('article_title')->unique();
             $table->text('article_content');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('categories_id')->references('id')->on('categories')->onDelete('set null');
         });
     }
 
