@@ -14,6 +14,7 @@
 Auth::routes([
 	'verify'=>true,
 	'register'=>false,
+	'reset'=>false,
 ]);
 
 Route::get('/', 'HomeController@index');
