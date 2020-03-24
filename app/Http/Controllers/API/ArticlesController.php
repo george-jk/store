@@ -38,13 +38,17 @@ class ArticlesController extends Controller
     public function show(Article $article)
     {
         if ($article->visible) {
+            $article->category;
             return response()->json([
+                'article_id'=>$article->id,
                 'article_title'=>$article->article_title,
                 'article_content'=>$article->article_content,
+                'categoriy_id'=>$article->categories_id,
+                'category_title'=>$article->category->category_title,
                 'created_at'=>$article->created_at->toDateTimeString(),
             ]); 
         } else {
-            return response()->json(['message'=>'Not Found or Hidden!'],404);
+            return response()->json(['visible'=>'false'],404);
         }
         
     }
