@@ -53,6 +53,11 @@ class ArticlesController extends Controller
         
     }
 
+    public function getByCategory($id)
+    {
+        return 'get last article from category '.$id; 
+    }
+
     /**
      * Update the specified resource in storage.
      *
