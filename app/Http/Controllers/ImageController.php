@@ -35,28 +35,30 @@ class ImageController extends Controller
             $image= $request->file('imageFile');
             $save_path=config('filesystems.disks.uploads.root').'/'.trim($request->path,'\/');
             $db_path=config('app_products.products.image.db_path').'/'.trim($request->path,'\/');
-            $image_name= $image->getClientOriginalName();
+            $image_name= head(explode('.',$image->getClientOriginalName()));
             $image_width=config('app_products.products.image.width');
             $image_height=config('app_products.products.image.height');
+            $image_format=config('app_products.products.image.format');
+            $image_fill=config('app_products.products.image.fill_color');
 
             if (!file_exists($save_path)){
                 Storage::disk('uploads')->makeDirectory($request->path);
             }
-            $background = InterventionImage::canvas($image_width,$image_height);
+            $background = InterventionImage::canvas($image_width,$image_height,$image_fill);
             $image=InterventionImage::make($image->getRealPath())->resize($image_width,$image_height,function ($canvas) {
                 $canvas->aspectRatio();
                 $canvas->upsize();
             });
-            $background->insert($image, 'center');
-            $background->save($save_path.'/'.$image_name);
+            $background->insert($image, 'center')->encode($image_format);
+            $background->save($save_path.'/'.$image_name.'.'.$image_format);
 
             Image::create([
-                'path'=>$db_path.'/'.$image_name,
+                'path'=>$db_path.'/'.$image_name.'.'.$image_format,
                 'description'=>last(explode('/',trim($request->path,'\/'))),
                 'product_id'=>$request->product_id,
             ]);
 
-            return back()->with('success', 'Your file is submitted Successfully in '.$db_path.'/'.$image_name);
+            return back()->with('success', 'Your file is submitted Successfully in '.$db_path.'/'.$image_name.'.'.$image_format);
         } else {
             return back()->with('fail', 'Fail, No image uploaded!');
         }
