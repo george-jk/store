@@ -56,7 +56,7 @@ class ImageController extends Controller
                 'product_id'=>$request->product_id,
             ]);
 
-            return back()->with('success', 'Your file is submitted Successfully in '.$save_path.$image_name);
+            return back()->with('success', 'Your file is submitted Successfully in '.$db_path.'/'.$image_name);
         } else {
             return back()->with('fail', 'Fail, No image uploaded!');
         }
