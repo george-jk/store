@@ -33,7 +33,8 @@ class ImageController extends Controller
         if ($request->hasFile('imageFile')) {
 
             $image= $request->file('imageFile');
-            $save_path=config('filesystems.disks.uploads.root').'/'.$request->path;
+            $save_path=config('filesystems.disks.uploads.root').'/'.trim($request->path,'\/');
+            $db_path=config('app_products.products.image.db_path').'/'.trim($request->path,'\/');
             $image_name= $image->getClientOriginalName();
             $image_width=config('app_products.products.image.width');
             $image_height=config('app_products.products.image.height');
@@ -47,11 +48,11 @@ class ImageController extends Controller
                 $canvas->upsize();
             });
             $background->insert($image, 'center');
-            $background->save($save_path.$image_name);
+            $background->save($save_path.'/'.$image_name);
 
             Image::create([
-                'path'=>$save_path.$image_name,
-                'description'=>$image_name,
+                'path'=>$db_path.'/'.$image_name,
+                'description'=>last(explode('/',trim($request->path,'\/'))),
                 'product_id'=>$request->product_id,
             ]);
 
