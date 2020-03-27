@@ -19,7 +19,7 @@ class Product extends Model
 
     /**
      * Return images that product has.
-     * Return default if hasn't (from config file).
+     * Return default fot those who do not have one (from config file).
      */
 
     public function images()
