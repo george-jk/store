@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class ProductsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of all products with images.
      *
      * @return \Illuminate\Http\Response
      */
@@ -34,7 +34,7 @@ class ProductsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified product with images.
      *
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response

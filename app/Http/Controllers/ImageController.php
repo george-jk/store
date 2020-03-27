@@ -45,7 +45,7 @@ class ImageController extends Controller
                 Storage::disk('uploads')->makeDirectory($request->path);
             }
             $background = InterventionImage::canvas($image_width,$image_height,$image_fill);
-            $image=InterventionImage::make($image->getRealPath())->resize($image_width,$image_height,function ($canvas) {
+            $image=InterventionImage::make($image->getRealPath())->resize($image_width+20,$image_height+20,function ($canvas) {
                 $canvas->aspectRatio();
                 $canvas->upsize();
             });
