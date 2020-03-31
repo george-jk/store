@@ -38,7 +38,7 @@
                             <a class="nav-link {{Request::path()==substr(route('categories.index',[],false),1)?'disabled':''}}" href="{{route('categories.index')}}">{{__('Меню')}}</a>
                         </li>
                         <li class="nav-tem">
-                            <a class="nav-link {{Request::path()==substr(route('products.admin',[],false),1)?'disabled':''}}" href="{{route('products.admin')}}">{{__('Артикули')}}</a>
+                            <a class="nav-link {{Request::path()==substr(route('products.index',[],false),1)?'disabled':''}}" href="{{route('products.index')}}">{{__('Артикули')}}</a>
                         </li>
                         <li class="nav-tem">
                             <a class="nav-link {{Request::path()==substr(route('orders.index',[],false),1)?'disabled':''}}" href="{{route('orders.index')}}">{{__('Поръчки')}}</a>

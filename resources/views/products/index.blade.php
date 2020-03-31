@@ -9,7 +9,29 @@
 					{{ __('Промяна') }}
 				</div>
 				<div class="card-body">
+					<div class="dropdown show">
+						<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Категория
+						</a>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+							<a class="dropdown-item" href="{{route('products.index')}}">Всички</a>
+							@foreach($categories as $category)
+							@if($category->parent==0)
+							<h6 class="dropdown-header">{{$category->category_title}}</h6>
+							@foreach($categories as $subcat)
+							@if($subcat->parent==$category->id)
+							<a class="dropdown-item" href="{{route('products.show',[$subcat->id])}}">{{$subcat->category_title}}</a>
+							@endif
+							@endforeach
+							@endif
+							@endforeach
+						</div>
+					</div>
+					<hr>
 					<ul class="list-group list-group-flush">
+						@if($products->isEmpty())
+						<span>{{__('Липсват продукти в тази категория')}}</span>
+						@endif
 						@foreach($products as $product)
 						<li class="list-group-item list-group-item-action">	
 							<a href="{{route('products.edit',$product->id)}}" class="list-group-item-action {{$product->visible==0?'mark':''}}">{{$product->name}}</a>
