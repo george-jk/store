@@ -23,6 +23,10 @@ class CreateCustomersTable extends Migration
             $table->string('address');
             $table->string('province');
             $table->string('village');
+            $table->string('company_name')->nullable();
+            $table->string('contact_person')->nullable();
+            $table->string('company_number')->nullable();
+            $table->string('vat_number')->nullable();
             $table->boolean('subscribe');
             $table->timestamps();
 

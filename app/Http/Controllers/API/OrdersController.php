@@ -22,7 +22,7 @@ class OrdersController extends Controller
     {
         return (Order::all());
     }
-
+   
     /**
      * Store a newly created resource in storage.
      *
@@ -32,13 +32,8 @@ class OrdersController extends Controller
     public function store(OrderStore $request)
     {
         $validated=$request->validated();
-        if ($request->user_id==null) {
-            $customer=Customer::create($validated);
-            $order=Order::create(['customer_id'=>$customer->id]);
-        } else {
-            $user=User::findOrFail($request->user_id);
-            $order=Order::create(['customer_id'=>$user->customer->id]);
-        }
+        $customer=Customer::create($validated);
+        $order=Order::create(['customer_id'=>$customer->id]);
         foreach ($validated['order'] as $item) {
             $order->product()->attach($item['product_id'],[
                 'quantity'=>$item['quantity'],
@@ -46,7 +41,6 @@ class OrdersController extends Controller
             ]);
         }
         $order->status()->attach($order->id,['status_id'=>1]);
-        // $user=User::findOrFail($request->user_id);
         // Mail::to($user->email)->send(new OrderCreated(Order::find($order->id), $user->name));
         return response()->json([
             'success'=>'true',

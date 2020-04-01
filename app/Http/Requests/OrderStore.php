@@ -28,7 +28,7 @@ class OrderStore extends FormRequest
             'name'=>['required','min:3','max:255'],
             'family'=>['required','min:3','max:255'],
             'phone'=>['required','min:6','max:12'],
-            // 'email'=>['required','email:rfc'],
+            'email'=>['required','email:rfc'],
             'email'=>['required'],
             'address'=>['required','min:3','max:255'],
             'province'=>['required','min:3','max:255'],

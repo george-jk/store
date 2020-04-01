@@ -9,13 +9,13 @@ use Illuminate\Http\Request;
 class ProductsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of all products with images.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        foreach (Product::all() as $product){
+        foreach (Product::where('visible',1)->get() as $product){
             $product->images;
             $products[]=$product;
         }
@@ -34,7 +34,7 @@ class ProductsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified product with images.
      *
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response

@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return (Category::all()->sortBy('parent'));
+        return (Category::where('visible',1)->get()->sortBy('parent'));
     }
 
     /**

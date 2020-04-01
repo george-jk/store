@@ -1,56 +1,60 @@
-@extends('layout')
+@extends('layouts.admin')
 @section('content')
 
-<div class="field">	
-	<form method="post" action="/categories">
-		{{csrf_field()}}
-		<div class="field">
-			<label class="label">Category</label>
-			<div class="control">
-				<input class="input" type="text" name="category_title" placeholder="Category name" value="{{old('category_title')}}" required>
-			</div>
-			<p class="help">Type category name</p>
-		</div>
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-md-6">
+			<div class="card mb-2">
+				<div class="card-header text-center">
+					{{ __('Създаване') }}
+				</div>
+				<div class="card-body">	
+					<form method="POST" action={{route('categories.store')}}>
+						{{csrf_field()}}
+						<div class="form-row">
+							<div class="form-check">
+								<input type="hidden" name="visible" value="0">
+								<input class="form-check-input" type="checkbox" name="visible" value="1" id="visibleCheck">
+								<label class="form-check-label" for="visibleCheck">
+									{{__('Видим')}}
+								</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="category_title">Категория</label>
+							<input type="text" class="form-control @error('category_title') is-invalid @enderror" id="category_title" aria-describedby="nameHelp" name="category_title" value="{{old('category_title')}}" required>
+							<small id="nameHelp" class="form-text text-muted">Името на категорията се визуализира в менюто</small>
+							@error('category_title')
+							<small id="nameHelp" class="invalid-feedback">{{$errors->first('category_title')}}</small>
+							@enderror
+						</div>
+						<div class="form-group">
+							<label for="category_description">Описание</label>
+							<input type="text" class="form-control @error('category_description') is-invalid @enderror" id="category_description" aria-describedby="nameHelp" name="category_description" value="{{old('category_description')}}" required>
+							@error('category_description')
+							<small id="nameHelp" class="invalid-feedback">{{$errors->first('category_description')}}</small>
+							@enderror
+						</div>
+						<div class="form-group">
+							<label for="category">Подкатегория на:</label>
+							<select class="form-control @error('parent') is-invalid @enderror" id="category" name="parent">
+								<option value="0">Главна категория</option>
+								@foreach($categories as $category)
+								<option value="{{$category->id}}" {{old('parent')==$category->id?'selected':''}}>
+									{{$category->category_title}}
+								</option>
+								@endforeach
+							</select>
+							@error('parent')
+							<small id="parentHelp" class="invalid-feedback">{{$errors->first('parent')}}</small>
+							@enderror
+						</div>
 
-		<div class="field">
-			<label class="label">Description</label>
-			<div class="control">
-				<input class="input" type="text" name="category_description" placeholder="Describe category" value="{{old('category_description')}}" required>
-			</div>
-			<p class="help">Type some short description</p>
-		</div>
-
-		<div class="field">
-			<label class="label">Subcategory</label>
-			<div class="control">
-				<div class="select">
-					<select name="parent">
-						<option value="0">Main category</option>
-						@foreach($categories as $category)
-						<option value="{{$category->id}}" {{old('parent')==$category->id?'selected':''}}>{{$category->category_title}}</option>
-						@endforeach
-					</select>
+						<button type="submit" class="btn btn-success">Добавяне</button>
+					</form>
 				</div>
 			</div>
 		</div>
-
-		<div class="field">
-			<p class="control">
-				<button class="button is-success">
-					Create
-				</button>
-			</p>
-		</div>
-	</form>
+	</div>
 </div>
-@if ($errors->any())
-<div class="notification is-danger">
-	<ul>
-		@foreach ($errors->all() as $error)
-		<li>{{$error}}</li>
-		@endforeach
-	</ul>
-</div>
-@endif
-
 @endsection

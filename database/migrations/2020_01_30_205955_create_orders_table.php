@@ -13,12 +13,17 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
+        Schema::enableForeignKeyConstraints();
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('customer_id')->unsigned();
+            $table->bigInteger('general_terms_id')->unsigned()->nullable();
+            $table->bigInteger('terms_of_delivery_id')->unsigned()->nullable();
             $table->timestamps();
 
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+            $table->foreign('general_terms_id')->references('id')->on('general_terms')->onDelete('set null');
+            $table->foreign('terms_of_delivery_id')->references('id')->on('terms_of_delivery')->onDelete('set null');
         });
 
         Schema::create('order_product', function (Blueprint $table) {

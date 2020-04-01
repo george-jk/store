@@ -17,7 +17,14 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        return Product::all();
+        return (view('products.index',[
+            'products'=>Product::paginate(6),
+            'categories'=>Category::all()
+        ]));
+    }
+
+    public function filter(Request $request)
+    {
     }
 
     /**
@@ -27,7 +34,12 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //
+        $categories=Category::all();
+        $images=Image::all();
+        return(view('products.create',[
+            'categories'=>$categories,
+            'images'=>$images
+        ]));
     }
 
     /**
@@ -38,7 +50,8 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        return Product::create($request->validate([
+        Product::create($request->validate([
+            'visible'=>['required'],
             'name'=>['required','min:3','max:255'],
             'manifacture'=>['required','min:2','max:255'],
             'description'=>['required','min:3'],
@@ -46,19 +59,28 @@ class ProductsController extends Controller
             'category_id'=>'required',
             'price'=>['required','numeric'],
             'currency'=>['required','max:255'],
+            'stock'=>['required','numeric','min:0'],
             'image_id'=>'required'
         ]));
+        return(redirect(route('products.index')));
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified product filtred by category.
+     * Name of variable from GET requst is incorrect product, actualy get category id
      *
-     * @param  \App\Product  $product
+     * @param  \App\Category  $Category
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Request $request)
     {
-        return $product;
+        $request->validate([
+            'product'=>'numeric'
+        ]);
+        return (view('products.index',[
+            'products'=>Product::where('category_id',$request->product)->paginate(6),
+            'categories'=>Category::all()
+        ]));
     }
 
     /**
@@ -73,7 +95,11 @@ class ProductsController extends Controller
         $product->images;
         $categories=Category::all();
         $images=Image::all();
-        return (view('products.edit',['product'=>$product,'categories'=>$categories,'images'=>$images]));
+        return (view('products.edit',[
+            'product'=>$product,
+            'categories'=>$categories,
+            'images'=>$images
+        ]));
     }
 
     /**
@@ -86,7 +112,7 @@ class ProductsController extends Controller
     public function update(ProductStore $request, Product $product)
     {
         $product->update($request->validated());
-        return(redirect(route('products.admin')));
+        return(redirect(route('products.index')));
     }
 
     /**
@@ -105,8 +131,15 @@ class ProductsController extends Controller
         return Product::firstOrFail($id)->category;
     }
 
-    public function admin()
+    /*
+     * Must delete admin, migrate to index
+     */
+
+    public function admin(Category $category=NULL)
     {
-        return (view('products.index',['products'=>Product::all()]));
+        return (view('products.index',[
+            'products'=>Product::where('category_id',$category->category_id)->paginate(6),
+            'categories'=>Category::all()
+        ]));
     }
 }

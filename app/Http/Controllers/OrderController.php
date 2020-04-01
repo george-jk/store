@@ -17,7 +17,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return (view('orders.index',['orders'=>Order::all()]));
+        return (view('orders.index',['orders'=>Order::paginate(6)]));
     }
 
     /**
