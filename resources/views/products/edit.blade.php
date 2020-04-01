@@ -114,7 +114,10 @@
 							<small id="imageHelp" class="invalid-feedback">{{$errors->first('image')}}</small>
 							@enderror
 						</div>
-						<button type="submit" class="btn btn-primary">Промени</button>
+						<div class="d-flex justify-content-between">
+							<a class="btn btn-light active" href="{{url()->previous()}}">&lt;</a>
+							<button type="submit" class="btn btn-primary">Промени</button>
+						</div>
 					</form>
 				</div>
 			</div>
