@@ -32,7 +32,7 @@
 						</div>
 						<div class="form-group">
 							<label for="path">Path</label>
-							<input type="text" class="form-control @error('path') is-invalid @enderror" id="path" name="path" required value="images">
+							<input type="text" class="form-control @error('path') is-invalid @enderror" id="path" name="path" required value="Brand/type/MODEL">
 							@error('path')
 							<small id="pathHelp" class="invalid-feedback">{{$errors->first('path')}}</small>
 							@enderror
