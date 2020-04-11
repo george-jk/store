@@ -20,6 +20,7 @@ use Illuminate\Http\Request;
 Route::apiResource('category','API\CategoryController');
 Route::apiResource('products','API\ProductsController');
 Route::get('products-cat/{category_id}','API\ProductsController@getByCategory');
+Route::get('productsByCategory/{category_id}','API\ProductsController@getByCategoryPaginate');
 Route::get('search/{name}','API\ProductsController@search');
 Route::get('terms/general/{id}','API\TermsController@showGeneral');
 Route::get('terms/general','API\TermsController@lastGeneral');
