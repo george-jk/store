@@ -47,8 +47,28 @@ class ProductsController extends Controller
 
     public function getByCategory($request)
     {
-        return Product::where('category_id',$request)->get();
+        //to do request verification
+        $products=[];
+        foreach(Product::where(['category_id'=>$request,'visible'=>1])->get() as $product){
+            $product->images;
+            $products[]=$product;
+        }
+        return $products;
     }
+
+    /**
+     * Return visible products with pagination.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return App\Product
+     */
+    public function getByCategoryPaginate($request)
+    {
+        //to do request verification
+        return Product::with('images')->where(['category_id'=>$request,'visible'=>1])->paginate(6)->toJson();
+    }
+
+
     
     public function search($request)
     {
