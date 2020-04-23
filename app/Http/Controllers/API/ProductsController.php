@@ -60,7 +60,7 @@ class ProductsController extends Controller
      * Return visible products with pagination.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return App\Product
+     * @return JSON paginated Products
      */
     public function getByCategoryPaginate($request)
     {
@@ -68,11 +68,21 @@ class ProductsController extends Controller
         return Product::with('images')->where(['category_id'=>$request,'visible'=>1])->paginate(6)->toJson();
     }
 
-
+    /**
+     * Search visible products 'like'.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return App\Product or null
+     */
     
     public function search($request)
     {
-        foreach (Product::where('name','like','%'.$request.'%')->get() as $product){
+        $products[]=null;
+        foreach (Product::where([
+            ['name','like','%'.$request.'%'],
+            ['visible','=',1]
+        ])
+            ->get() as $product){
             $product->images;
             $products[]=$product;
         }
