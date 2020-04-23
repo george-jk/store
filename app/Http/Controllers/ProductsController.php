@@ -19,8 +19,16 @@ class ProductsController extends Controller
     {
         return (view('products.index',[
             'products'=>Product::paginate(6),
-            'categories'=>Category::all()
+            'categories'=>$this->getCategories()
         ]));
+    }
+
+    private function getCategories()
+    {
+        foreach (Category::all() as $category) {
+            $categories[$category->id]=$category;
+        }
+        return $categories;
     }
 
     public function filter(Request $request)
@@ -75,11 +83,11 @@ class ProductsController extends Controller
     public function show(Request $request)
     {
         $request->validate([
-            'product'=>'numeric'
+            'product'=>['numeric', 'exists:categories,id']
         ]);
         return (view('products.index',[
             'products'=>Product::where('category_id',$request->product)->paginate(6),
-            'categories'=>Category::all()
+            'categories'=>$this->getCategories()
         ]));
     }
 

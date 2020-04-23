@@ -9,25 +9,27 @@
 					{{ __('Промяна') }}
 				</div>
 				<div class="card-body">
+					{{-- Filter dropdown --}}
 					<div class="dropdown show">
 						<a class="btn btn-secondary dropdown-toggle btn-block btn-sm" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							{{request()->product?$categories[request()->product-1]['category_title']:'Категория'}}
+							{{request()->product?$categories[request()->product]['category_title']:'Категория'}}
 						</a>
 						<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 							<a class="dropdown-item" href="{{route('products.index')}}">Всички</a>
 							@foreach($categories as $category)
-							@if($category->parent==0)
-							<h6 class="dropdown-header">{{$category->category_title}}</h6>
-							@foreach($categories as $subcat)
-							@if($subcat->parent==$category->id)
-							<a class="dropdown-item {{request()->product==$subcat->id?'active':''}}" href="{{route('products.show',[$subcat->id])}}">{{$subcat->category_title}}</a>
-							@endif
-							@endforeach
-							@endif
+								@if($category->parent==0)
+									<h6 class="dropdown-header">{{$category->category_title}}</h6>
+									@foreach($categories as $subcat)
+										@if($subcat->parent==$category->id)
+										<a class="dropdown-item {{request()->product==$subcat->id?'active':''}}" href="{{route('products.show',[$subcat->id])}}">{{$subcat->category_title}}</a>
+										@endif
+									@endforeach
+								@endif
 							@endforeach
 						</div>
 					</div>
 					<hr>
+					{{-- List products --}}
 					<ul class="list-group list-group-flush">
 						@if($products->isEmpty())
 						<span>{{__('Липсват продукти в тази категория')}}</span>
