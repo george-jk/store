@@ -36,7 +36,7 @@ Route::prefix('admin')->middleware('verified')->group(function () {
 });
 
 
-Route::get('category/{id}','CategoriesController@getProducts')->name('category.getProducts');
-Route::get('product/{id}','ProductsController@getCategory')->name('product.getCategory');
+// Route::get('category/{id}','CategoriesController@getProducts')->name('category.getProducts');
+// Route::get('product/{id}','ProductsController@getCategory')->name('product.getCategory');
 
 
