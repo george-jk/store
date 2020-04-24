@@ -18,7 +18,25 @@ class ProductsController extends Controller
     public function index()
     {
         return (view('products.index',[
-            'products'=>Product::paginate(6),
+            'products'=>$this->getProducts()->paginate(6),
+            'categories'=>$this->getCategories()
+        ]));
+    }
+
+    /**
+     * Display the specified product filtred by category.
+     * Name of variable from GET requst is incorrect product, actualy get category id
+     *
+     * @param  \App\Category  $Category
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Request $request)
+    {
+        $request->validate([
+            'product'=>['numeric', 'exists:categories,id']
+        ]);
+        return (view('products.index',[
+            'products'=>$this->getProducts()->paginate(6),
             'categories'=>$this->getCategories()
         ]));
     }
@@ -31,8 +49,10 @@ class ProductsController extends Controller
         return $categories;
     }
 
-    public function filter(Request $request)
+    private function getProducts()
     {
+        $products=Product::select('id','visible','name')->with('images');
+        return $products;
     }
 
     /**
@@ -71,24 +91,6 @@ class ProductsController extends Controller
             'image_id'=>'required'
         ]));
         return(redirect(route('products.index')));
-    }
-
-    /**
-     * Display the specified product filtred by category.
-     * Name of variable from GET requst is incorrect product, actualy get category id
-     *
-     * @param  \App\Category  $Category
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request)
-    {
-        $request->validate([
-            'product'=>['numeric', 'exists:categories,id']
-        ]);
-        return (view('products.index',[
-            'products'=>Product::where('category_id',$request->product)->paginate(6),
-            'categories'=>$this->getCategories()
-        ]));
     }
 
     /**
@@ -134,20 +136,9 @@ class ProductsController extends Controller
         //
     }
 
-    public function getCategory($id)
-    {
-        return Product::firstOrFail($id)->category;
-    }
+    // public function getCategory($id)
+    // {
+    //     return Product::firstOrFail($id)->category;
+    // }
 
-    /*
-     * Must delete admin, migrate to index
-     */
-
-    public function admin(Category $category=NULL)
-    {
-        return (view('products.index',[
-            'products'=>Product::where('category_id',$category->category_id)->paginate(6),
-            'categories'=>Category::all()
-        ]));
-    }
 }
