@@ -86,7 +86,7 @@ class ProductsController extends Controller
             $product->images;
             $products[]=$product;
         }
-        return ($products?$products:[null]);
+        return ($products?$products:null);
     }
 
     /**
