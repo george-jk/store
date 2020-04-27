@@ -1,0 +1,1 @@
+[16-Jan-2020 20:40:19 UTC] PHP Fatal error:  Class 'Illuminate\Database\Migrations\Migration' not found in /home/storesite/profitstore/database/migrations/2014_10_12_000000_create_users_table.php on line 7

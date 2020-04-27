@@ -1,0 +1,4 @@
+[08-Dec-2019 08:47:14 UTC] PHP Warning:  require(/home/storesite/profitstore/vendor/autoload.php): failed to open stream: No such file or directory in /home/storesite/profitstore/artisan on line 18
+[08-Dec-2019 08:47:14 UTC] PHP Fatal error:  require(): Failed opening required '/home/storesite/profitstore/vendor/autoload.php' (include_path='.:/opt/alt/php72/usr/share/pear') in /home/storesite/profitstore/artisan on line 18
+[08-Dec-2019 08:47:33 UTC] PHP Warning:  require(/home/storesite/profitstore/vendor/autoload.php): failed to open stream: No such file or directory in /home/storesite/profitstore/artisan on line 18
+[08-Dec-2019 08:47:33 UTC] PHP Fatal error:  require(): Failed opening required '/home/storesite/profitstore/vendor/autoload.php' (include_path='.:/opt/alt/php72/usr/share/pear') in /home/storesite/profitstore/artisan on line 18

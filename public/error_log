@@ -1,0 +1,71 @@
+[27-Nov-2019 17:44:42 UTC] PHP Warning:  file_exists() expects parameter 1 to be a valid path, string given in /home/storesite/storesite/server.php on line 17
+[27-Nov-2019 18:21:01 UTC] PHP Warning:  file_exists() expects parameter 1 to be a valid path, string given in /home/storesite/storesite/server.php on line 17
+[06-Dec-2019 08:44:27 UTC] PHP Warning:  file_exists() expects parameter 1 to be a valid path, string given in /home/storesite/storesite/server.php on line 17
+[12-Dec-2019 18:20:27 UTC] PHP Warning:  file_exists() expects parameter 1 to be a valid path, string given in /home/storesite/profitstore/server.php on line 17
+[13-Dec-2019 16:39:29 UTC] PHP Warning:  file_exists() expects parameter 1 to be a valid path, string given in /home/storesite/profitstore/server.php on line 17
+[13-Dec-2019 16:39:29 UTC] PHP Warning:  file_exists() expects parameter 1 to be a valid path, string given in /home/storesite/profitstore/server.php on line 17
+[13-Dec-2019 16:39:30 UTC] PHP Warning:  file_exists() expects parameter 1 to be a valid path, string given in /home/storesite/profitstore/server.php on line 17
+[13-Dec-2019 16:39:30 UTC] PHP Warning:  file_exists() expects parameter 1 to be a valid path, string given in /home/storesite/profitstore/server.php on line 17
+[13-Dec-2019 16:39:30 UTC] PHP Warning:  file_exists() expects parameter 1 to be a valid path, string given in /home/storesite/profitstore/server.php on line 17
+[13-Dec-2019 16:39:30 UTC] PHP Warning:  file_exists() expects parameter 1 to be a valid path, string given in /home/storesite/profitstore/server.php on line 17
+[14-Dec-2019 13:13:54 UTC] PHP Warning:  file_exists() expects parameter 1 to be a valid path, string given in /home/storesite/profitstore/server.php on line 17
+[14-Dec-2019 13:13:54 UTC] PHP Warning:  file_exists() expects parameter 1 to be a valid path, string given in /home/storesite/profitstore/server.php on line 17
+[14-Dec-2019 16:08:41 UTC] PHP Warning:  file_exists() expects parameter 1 to be a valid path, string given in /home/storesite/profitstore/server.php on line 17
+[14-Dec-2019 16:08:41 UTC] PHP Warning:  file_exists() expects parameter 1 to be a valid path, string given in /home/storesite/profitstore/server.php on line 17
+[05-Jan-2020 04:07:31 UTC] PHP Warning:  file_exists() expects parameter 1 to be a valid path, string given in /home/storesite/profitstore/server.php on line 17
+[17-Jan-2020 20:33:38 UTC] PHP Warning:  Unknown: failed to open stream: No such file or directory in Unknown on line 0
+[17-Jan-2020 20:33:38 UTC] PHP Fatal error:  Unknown: Failed opening required '/home/storesite/profitstore/server.php' (include_path='.:/opt/alt/php72/usr/share/pear') in Unknown on line 0
+[17-Jan-2020 20:44:33 UTC] PHP Warning:  Unknown: failed to open stream: No such file or directory in Unknown on line 0
+[17-Jan-2020 20:44:33 UTC] PHP Fatal error:  Unknown: Failed opening required '/home/storesite/profitstore/server.php' (include_path='.:/opt/alt/php72/usr/share/pear') in Unknown on line 0
+[17-Jan-2020 20:52:53 UTC] PHP Warning:  Unknown: failed to open stream: No such file or directory in Unknown on line 0
+[17-Jan-2020 20:52:53 UTC] PHP Fatal error:  Unknown: Failed opening required '/home/storesite/profitstore/server.php' (include_path='.:/opt/alt/php72/usr/share/pear') in Unknown on line 0
+[17-Jan-2020 20:55:31 UTC] PHP Warning:  Unknown: failed to open stream: No such file or directory in Unknown on line 0
+[17-Jan-2020 20:55:31 UTC] PHP Fatal error:  Unknown: Failed opening required '/home/storesite/profitstore/server.php' (include_path='.:/opt/alt/php72/usr/share/pear') in Unknown on line 0
+[17-Jan-2020 20:57:24 UTC] PHP Warning:  Unknown: failed to open stream: No such file or directory in Unknown on line 0
+[17-Jan-2020 20:57:24 UTC] PHP Fatal error:  Unknown: Failed opening required '/home/storesite/profitstore/server.php' (include_path='.:/opt/alt/php72/usr/share/pear') in Unknown on line 0
+[17-Jan-2020 20:58:07 UTC] PHP Warning:  Unknown: failed to open stream: No such file or directory in Unknown on line 0
+[17-Jan-2020 20:58:07 UTC] PHP Fatal error:  Unknown: Failed opening required '/home/storesite/profitstore/server.php' (include_path='.:/opt/alt/php72/usr/share/pear') in Unknown on line 0
+[17-Jan-2020 20:58:07 UTC] PHP Warning:  Unknown: failed to open stream: No such file or directory in Unknown on line 0
+[17-Jan-2020 20:58:07 UTC] PHP Fatal error:  Unknown: Failed opening required '/home/storesite/profitstore/server.php' (include_path='.:/opt/alt/php72/usr/share/pear') in Unknown on line 0
+[17-Jan-2020 20:58:13 UTC] PHP Warning:  Unknown: failed to open stream: No such file or directory in Unknown on line 0
+[17-Jan-2020 20:58:13 UTC] PHP Fatal error:  Unknown: Failed opening required '/home/storesite/profitstore/server.php' (include_path='.:/opt/alt/php72/usr/share/pear') in Unknown on line 0
+[17-Jan-2020 20:58:24 UTC] PHP Warning:  Unknown: failed to open stream: No such file or directory in Unknown on line 0
+[17-Jan-2020 20:58:24 UTC] PHP Fatal error:  Unknown: Failed opening required '/home/storesite/profitstore/server.php' (include_path='.:/opt/alt/php72/usr/share/pear') in Unknown on line 0
+[17-Jan-2020 20:59:38 UTC] PHP Warning:  Unknown: failed to open stream: No such file or directory in Unknown on line 0
+[17-Jan-2020 20:59:38 UTC] PHP Fatal error:  Unknown: Failed opening required '/home/storesite/profitstore/server.php' (include_path='.:/opt/alt/php72/usr/share/pear') in Unknown on line 0
+[17-Jan-2020 21:04:33 UTC] PHP Warning:  Unknown: failed to open stream: No such file or directory in Unknown on line 0
+[17-Jan-2020 21:04:33 UTC] PHP Fatal error:  Unknown: Failed opening required '/home/storesite/profitstore/server.php' (include_path='.:/opt/alt/php72/usr/share/pear') in Unknown on line 0
+[17-Jan-2020 21:07:15 UTC] PHP Warning:  Unknown: failed to open stream: No such file or directory in Unknown on line 0
+[17-Jan-2020 21:07:15 UTC] PHP Fatal error:  Unknown: Failed opening required '/home/storesite/profitstore/server.php' (include_path='.:/opt/alt/php72/usr/share/pear') in Unknown on line 0
+[17-Jan-2020 21:07:34 UTC] PHP Warning:  Unknown: failed to open stream: No such file or directory in Unknown on line 0
+[17-Jan-2020 21:07:34 UTC] PHP Fatal error:  Unknown: Failed opening required '/home/storesite/profitstore/server.php' (include_path='.:/opt/alt/php72/usr/share/pear') in Unknown on line 0
+[17-Jan-2020 21:07:34 UTC] PHP Warning:  Unknown: failed to open stream: No such file or directory in Unknown on line 0
+[17-Jan-2020 21:07:34 UTC] PHP Fatal error:  Unknown: Failed opening required '/home/storesite/profitstore/server.php' (include_path='.:/opt/alt/php72/usr/share/pear') in Unknown on line 0
+[17-Jan-2020 21:07:40 UTC] PHP Warning:  Unknown: failed to open stream: No such file or directory in Unknown on line 0
+[17-Jan-2020 21:07:40 UTC] PHP Fatal error:  Unknown: Failed opening required '/home/storesite/profitstore/server.php' (include_path='.:/opt/alt/php72/usr/share/pear') in Unknown on line 0
+[17-Jan-2020 21:08:17 UTC] PHP Warning:  Unknown: failed to open stream: No such file or directory in Unknown on line 0
+[17-Jan-2020 21:08:17 UTC] PHP Fatal error:  Unknown: Failed opening required '/home/storesite/profitstore/server.php' (include_path='.:/opt/alt/php72/usr/share/pear') in Unknown on line 0
+[17-Jan-2020 21:08:17 UTC] PHP Warning:  Unknown: failed to open stream: No such file or directory in Unknown on line 0
+[17-Jan-2020 21:08:17 UTC] PHP Fatal error:  Unknown: Failed opening required '/home/storesite/profitstore/server.php' (include_path='.:/opt/alt/php72/usr/share/pear') in Unknown on line 0
+[17-Jan-2020 21:08:17 UTC] PHP Warning:  Unknown: failed to open stream: No such file or directory in Unknown on line 0
+[17-Jan-2020 21:08:17 UTC] PHP Fatal error:  Unknown: Failed opening required '/home/storesite/profitstore/server.php' (include_path='.:/opt/alt/php72/usr/share/pear') in Unknown on line 0
+[17-Jan-2020 21:13:11 UTC] PHP Warning:  Unknown: failed to open stream: No such file or directory in Unknown on line 0
+[17-Jan-2020 21:13:11 UTC] PHP Fatal error:  Unknown: Failed opening required '/home/storesite/profitstore/server.php' (include_path='.:/opt/alt/php72/usr/share/pear') in Unknown on line 0
+[17-Jan-2020 21:14:28 UTC] PHP Warning:  Unknown: failed to open stream: No such file or directory in Unknown on line 0
+[17-Jan-2020 21:14:28 UTC] PHP Fatal error:  Unknown: Failed opening required '/home/storesite/profitstore/server.php' (include_path='.:/opt/alt/php72/usr/share/pear') in Unknown on line 0
+[17-Jan-2020 21:23:52 UTC] PHP Warning:  Unknown: failed to open stream: No such file or directory in Unknown on line 0
+[17-Jan-2020 21:23:52 UTC] PHP Fatal error:  Unknown: Failed opening required '/home/storesite/profitstore/server.php' (include_path='.:/opt/alt/php72/usr/share/pear') in Unknown on line 0
+[17-Jan-2020 21:25:09 UTC] PHP Warning:  Unknown: failed to open stream: No such file or directory in Unknown on line 0
+[17-Jan-2020 21:25:09 UTC] PHP Fatal error:  Unknown: Failed opening required '/home/storesite/profitstore/server.php' (include_path='.:/opt/alt/php72/usr/share/pear') in Unknown on line 0
+[17-Jan-2020 21:25:09 UTC] PHP Warning:  Unknown: failed to open stream: No such file or directory in Unknown on line 0
+[17-Jan-2020 21:25:09 UTC] PHP Fatal error:  Unknown: Failed opening required '/home/storesite/profitstore/server.php' (include_path='.:/opt/alt/php72/usr/share/pear') in Unknown on line 0
+[26-Mar-2020 20:34:36 Europe/Sofia] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 16384 bytes) in /home/storesite/profitstore/vendor/intervention/image/src/Intervention/Image/Gd/Decoder.php on line 138
+[26-Mar-2020 20:34:58 Europe/Sofia] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 16384 bytes) in /home/storesite/profitstore/vendor/intervention/image/src/Intervention/Image/Gd/Decoder.php on line 138
+[26-Mar-2020 20:35:17 Europe/Sofia] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 16384 bytes) in /home/storesite/profitstore/vendor/intervention/image/src/Intervention/Image/Gd/Decoder.php on line 138
+[27-Mar-2020 12:10:27 Europe/Sofia] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 16384 bytes) in /home/storesite/profitstore/vendor/intervention/image/src/Intervention/Image/Gd/Decoder.php on line 138
+[27-Mar-2020 12:11:16 Europe/Sofia] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 16384 bytes) in /home/storesite/profitstore/vendor/intervention/image/src/Intervention/Image/Gd/Decoder.php on line 138
+[27-Mar-2020 12:12:09 Europe/Sofia] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 16384 bytes) in /home/storesite/profitstore/vendor/intervention/image/src/Intervention/Image/Gd/Decoder.php on line 138
+[27-Mar-2020 12:12:38 Europe/Sofia] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 16384 bytes) in /home/storesite/profitstore/vendor/intervention/image/src/Intervention/Image/Gd/Decoder.php on line 138
+[27-Mar-2020 12:24:32 Europe/Sofia] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 16384 bytes) in /home/storesite/profitstore/vendor/intervention/image/src/Intervention/Image/Gd/Decoder.php on line 138
+[27-Mar-2020 20:42:15 Europe/Sofia] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 16384 bytes) in /home/storesite/profitstore/vendor/intervention/image/src/Intervention/Image/Gd/Decoder.php on line 138
+[27-Mar-2020 20:43:12 Europe/Sofia] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 16384 bytes) in /home/storesite/profitstore/vendor/intervention/image/src/Intervention/Image/Gd/Decoder.php on line 138
