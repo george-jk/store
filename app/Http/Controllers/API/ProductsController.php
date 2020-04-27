@@ -77,7 +77,7 @@ class ProductsController extends Controller
     
     public function search($request)
     {
-        $products[]=null;
+        $products=array();
         foreach (Product::where([
             ['name','like','%'.$request.'%'],
             ['visible','=',1]
@@ -86,7 +86,7 @@ class ProductsController extends Controller
             $product->images;
             $products[]=$product;
         }
-        return $products;
+        return ($products?$products:[null]);
     }
 
     /**
