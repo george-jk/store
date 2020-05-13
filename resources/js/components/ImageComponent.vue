@@ -32,7 +32,7 @@
 
             axios({
                 method: 'get',
-                url: '/admin/image/'
+                url: 'https://profitstore.bg/admin/image/'
             })
             .then(response=> this.allImages=response.data);
 
