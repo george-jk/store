@@ -122,7 +122,13 @@ class ProductsController extends Controller
     public function update(ProductStore $request, Product $product)
     {
         $product->update($request->validated());
-        return(redirect(route('products.index')));
+        if ($request->product_image) {
+            foreach ($request->product_image as $key=>$image) {
+                Image::findOrFail($key)->product()->dissociate()->save();
+                Image::findOrFail($image)->product()->associate($product)->save();
+            }
+        }
+        return(redirect(route('products.edit',[$product->id]))->with('success','Product Updated!'));
     }
 
     /**

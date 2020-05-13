@@ -13,6 +13,16 @@ use App\Image;
 class ImageController extends Controller
 {
     /**
+     * Display a listing of the images.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return response()->json(Image::all());
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -62,5 +72,16 @@ class ImageController extends Controller
         } else {
             return back()->with('fail', 'Fail, No image uploaded!');
         }
+    }
+
+    /**
+     * Show the form for editing Images
+     *
+     * @param  \App\Image  $image
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Image $image)
+    {
+        return (view('images.edit'));
     }
 }
