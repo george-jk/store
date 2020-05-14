@@ -37414,7 +37414,7 @@ var render = function() {
     _c("img", {
       staticClass: "img-thumbnail",
       attrs: {
-        src: _vm.currentImage.path,
+        src: "https://profitstore.bg" + _vm.currentImage.path,
         alt: _vm.currentImage.description,
         height: "auto"
       }

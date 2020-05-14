@@ -1,6 +1,6 @@
 <template>
     <div class="col" id="app">
-            <img :src="currentImage.path" :alt="currentImage.description" class="img-thumbnail" height="auto">
+            <img :src="'https://profitstore.bg'+currentImage.path" :alt="currentImage.description" class="img-thumbnail" height="auto">
             <select @change="change" v-model="newImage" class="form-control mt-1" id="product_image_id" :name="'product_image['+product_image.id+']'" >
                 <option v-for="item in allImages" :value="item.id">
                     {{item.description}}
@@ -32,7 +32,7 @@
 
             axios({
                 method: 'get',
-                url: 'https://profitstore.bg/admin/image/'
+                url: '/admin/image/'
             })
             .then(response=> this.allImages=response.data);
 
