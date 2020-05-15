@@ -1,11 +1,20 @@
 <template>
     <div class="col" id="app">
+        <div class="card card-title" @mouseover="show" @mouseleave="hide">
             <img :src="'https://profitstore.bg'+currentImage.path" :alt="currentImage.description" class="img-thumbnail" height="auto">
+            <div class="card-img-overlay" v-show="button">
+                <a href="#" class="badge badge-danger float-right">
+                    <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+        <div>
             <select @change="change" v-model="newImage" class="form-control mt-1" id="product_image_id" :name="'product_image['+product_image.id+']'" >
                 <option v-for="item in allImages" :value="item.id">
                     {{item.description}}
                 </option>
             </select>
+        </div>
 
     </div>
 </template>
@@ -22,6 +31,7 @@
 
         data () {
             return {
+                button:false,
                 currentImage:[],
                 allImages:[],
                 newImage:[],
@@ -45,6 +55,12 @@
                 this.allImages.forEach(key=>{
                     if (key.id==this.newImage) {this.currentImage=key}
                 })
+            },
+            show(){
+                this.button=true;
+            },
+            hide(){
+                this.button=false;
             }
         }
     }

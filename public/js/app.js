@@ -1953,6 +1953,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'app',
   props: {
@@ -1961,6 +1970,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      button: false,
       currentImage: [],
       allImages: [],
       newImage: []
@@ -1987,6 +1997,12 @@ __webpack_require__.r(__webpack_exports__);
           _this2.currentImage = key;
         }
       });
+    },
+    show: function show() {
+      this.button = true;
+    },
+    hide: function hide() {
+      this.button = false;
     }
   }
 });
@@ -37411,62 +37427,105 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col", attrs: { id: "app" } }, [
-    _c("img", {
-      staticClass: "img-thumbnail",
-      attrs: {
-        src: "https://profitstore.bg" + _vm.currentImage.path,
-        alt: _vm.currentImage.description,
-        height: "auto"
-      }
-    }),
-    _vm._v(" "),
     _c(
-      "select",
+      "div",
       {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.newImage,
-            expression: "newImage"
-          }
-        ],
-        staticClass: "form-control mt-1",
-        attrs: {
-          id: "product_image_id",
-          name: "product_image[" + _vm.product_image.id + "]"
-        },
-        on: {
-          change: [
-            function($event) {
-              var $$selectedVal = Array.prototype.filter
-                .call($event.target.options, function(o) {
-                  return o.selected
-                })
-                .map(function(o) {
-                  var val = "_value" in o ? o._value : o.value
-                  return val
-                })
-              _vm.newImage = $event.target.multiple
-                ? $$selectedVal
-                : $$selectedVal[0]
-            },
-            _vm.change
-          ]
-        }
+        staticClass: "card card-title",
+        on: { mouseover: _vm.show, mouseleave: _vm.hide }
       },
-      _vm._l(_vm.allImages, function(item) {
-        return _c("option", { domProps: { value: item.id } }, [
-          _vm._v(
-            "\n                " + _vm._s(item.description) + "\n            "
-          )
-        ])
-      }),
-      0
-    )
+      [
+        _c("img", {
+          staticClass: "img-thumbnail",
+          attrs: {
+            src: "https://profitstore.bg" + _vm.currentImage.path,
+            alt: _vm.currentImage.description,
+            height: "auto"
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.button,
+                expression: "button"
+              }
+            ],
+            staticClass: "card-img-overlay"
+          },
+          [_vm._m(0)]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c("div", [
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.newImage,
+              expression: "newImage"
+            }
+          ],
+          staticClass: "form-control mt-1",
+          attrs: {
+            id: "product_image_id",
+            name: "product_image[" + _vm.product_image.id + "]"
+          },
+          on: {
+            change: [
+              function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.newImage = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+              _vm.change
+            ]
+          }
+        },
+        _vm._l(_vm.allImages, function(item) {
+          return _c("option", { domProps: { value: item.id } }, [
+            _vm._v(
+              "\n                " + _vm._s(item.description) + "\n            "
+            )
+          ])
+        }),
+        0
+      )
+    ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      { staticClass: "badge badge-danger float-right", attrs: { href: "#" } },
+      [
+        _c("i", {
+          staticClass: "fa fa-minus-circle",
+          attrs: { "aria-hidden": "true" }
+        })
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 
