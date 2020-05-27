@@ -23,12 +23,14 @@
 						{{csrf_field()}}
 						@method('PUT')
 						<div class="form-group row">
-							<div class="form-check">
-								<input type="hidden" name="visible" value="0">
-								<input class="form-check-input" type="checkbox" name="visible" value="1" id="visibleCheck" {{$product->visible==1?'checked':''}}>
-								<label class="form-check-label" for="visibleCheck">
-									{{__('Видим')}}
-								</label>
+							<div class="col">
+								<div class="form-check">
+									<input type="hidden" name="visible" value="0">
+									<input class="form-check-input" type="checkbox" name="visible" value="1" id="visibleCheck" {{$product->visible==1?'checked':''}}>
+									<label class="form-check-label" for="visibleCheck">
+										{{__('Видим')}}
+									</label>
+								</div>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -130,6 +132,8 @@
 							@foreach($product->images as $key=>$product_image)
 							<image-component :key_image="{{$key}}" :product_image="{{$product_image}}"></image-component>
 							@endforeach
+							<add-image-component :product="{{$product}}">
+							</add-image-component>
 						</div>
 						<div class="form-row d-flex justify-content-between">
 							<a class="btn btn-light active" href="{{url()->previous()}}">&lt;</a>
