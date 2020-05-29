@@ -2004,45 +2004,43 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'app',
   props: {
-    product_image: {},
-    key_image: ''
+    product_image: {}
   },
   data: function data() {
     return {
       button: false,
       currentImage: [],
-      allImages: [],
-      newImage: []
+      allImages: [] // newImage:[],
+
     };
   },
   created: function created() {
-    var _this = this;
-
-    axios({
-      method: 'get',
-      url: '/admin/image/'
-    }).then(function (response) {
-      return _this.allImages = response.data;
-    });
+    // // get all images from DB
+    // axios({
+    //     method: 'get',
+    //     url: '/admin/image/'
+    // })
+    // .then(response=> this.allImages=response.data);
     this.currentImage = this.product_image;
+    console.log(this.product_image);
   },
   methods: {
-    change: function change() {
-      var _this2 = this;
-
-      this.currentImage = this.allImages[this.newImage];
-      this.allImages.forEach(function (key) {
-        if (key.id == _this2.newImage) {
-          _this2.currentImage = key;
-        }
-      });
-    },
+    // // change image when change it from dropdown
+    // change(){
+    //     this.currentImage=this.allImages[this.newImage];
+    //     this.allImages.forEach(key=>{
+    //         if (key.id==this.newImage) {this.currentImage=key}
+    //     })
+    // },
+    // show delete button
     show: function show() {
       this.button = true;
     },
+    // hide delete button
     hide: function hide() {
       this.button = false;
     },
+    // delete image function
     deleteImage: function deleteImage() {
       if (confirm('Delete')) {
         axios({
@@ -38266,10 +38264,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {
-      staticClass: "col col-2 d-flex align-items-center",
-      attrs: { id: "app" }
-    },
+    { attrs: { id: "app" } },
     [
       _c(
         "span",
@@ -38386,7 +38381,7 @@ var render = function() {
       _c("img", {
         staticClass: "img-thumbnail",
         attrs: {
-          src: "https://profitstore.bg" + _vm.currentImage.path,
+          src: _vm.currentImage.path,
           alt: _vm.currentImage.description,
           height: "auto"
         }

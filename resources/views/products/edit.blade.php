@@ -112,7 +112,7 @@
 								@enderror
 							</div>
 						</div>
-						<div class="form-group">
+{{-- 						<div class="form-group">
 							<label for="iamge">
 								<i class="fa fa-image"></i>
 								Изображение
@@ -127,13 +127,25 @@
 							@error('image')
 							<small id="imageHelp" class="invalid-feedback">{{$errors->first('image')}}</small>
 							@enderror
-						</div>
-						<div class="form-group row">
-							@foreach($product->images as $key=>$product_image)
-							<image-component :key_image="{{$key}}" :product_image="{{$product_image}}"></image-component>
-							@endforeach
-							<add-image-component :product="{{$product}}">
-							</add-image-component>
+						</div> --}}
+						<div class="form-group">
+							<label for="iamge">
+								<i class="fa fa-image"></i>
+								Изображение
+							</label>
+							<div class="row">
+									@foreach($product->images as $key=>$product_image)
+									@if($product_image->product_id!=config('app_products.products.image.default_product_id_image'))
+								<div class="col-md-6 mb-1">
+									<image-component :product_image="{{$product_image}}"></image-component>
+								</div>
+									@endif
+									@endforeach
+									<div class="col-md-6 d-flex justify-content-center">
+									<add-image-component :product="{{$product}}">
+									</add-image-component>
+								</div>
+							</div>
 						</div>
 						<div class="form-row d-flex justify-content-between">
 							<a class="btn btn-light active" href="{{url()->previous()}}">&lt;</a>

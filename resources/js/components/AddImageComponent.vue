@@ -1,6 +1,6 @@
 <!-- add-image-component -->
 <template>
-	<div class="col col-2 d-flex align-items-center" id="app">
+	<div id="app">
 		<span class="plus" @click="showModal=true"><i class="fa fa-plus-square" aria-hidden="true"></i></span>
 		<upload-image-component v-if="showModal" @hide="showModal=false" :product='prod'>
 			<template slot="title">

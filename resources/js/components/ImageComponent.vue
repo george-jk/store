@@ -2,7 +2,7 @@
 <template>
     <div class="col" id="app">
         <div  @mouseover="show" @mouseleave="hide">
-            <img :src="'https://profitstore.bg'+currentImage.path" :alt="currentImage.description" class="img-thumbnail" height="auto">
+            <img :src="currentImage.path" :alt="currentImage.description" class="img-thumbnail" height="auto">
             <span class="middle" v-show="button" @click="deleteImage">
                 <i class="fa fa-minus-circle" aria-hidden="true"></i>
             </span>
@@ -24,7 +24,6 @@
 
         props:{
             product_image:{},
-            key_image:''
         },
 
         data () {
@@ -32,34 +31,38 @@
                 button:false,
                 currentImage:[],
                 allImages:[],
-                newImage:[],
+                // newImage:[],
             }
         },
 
         created(){
-
-            axios({
-                method: 'get',
-                url: '/admin/image/'
-            })
-            .then(response=> this.allImages=response.data);
-
+            // // get all images from DB
+            // axios({
+            //     method: 'get',
+            //     url: '/admin/image/'
+            // })
+            // .then(response=> this.allImages=response.data);
             this.currentImage=this.product_image;
+            console.log(this.product_image);
         },
 
         methods:{
-            change(){
-                this.currentImage=this.allImages[this.newImage];
-                this.allImages.forEach(key=>{
-                    if (key.id==this.newImage) {this.currentImage=key}
-                })
-            },
+            // // change image when change it from dropdown
+            // change(){
+            //     this.currentImage=this.allImages[this.newImage];
+            //     this.allImages.forEach(key=>{
+            //         if (key.id==this.newImage) {this.currentImage=key}
+            //     })
+            // },
+            // show delete button
             show(){
                 this.button=true;
             },
+            // hide delete button
             hide(){
                 this.button=false;
             },
+            // delete image function
             deleteImage(){
                 if(confirm('Delete')){
                     axios({
