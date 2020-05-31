@@ -15,7 +15,7 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        return Article::where('visible',1)->get();
+        return Article::where('visible',1)->with(['user:id,name','category:id,visible,category_title'])->get();
     }
 
     /**
