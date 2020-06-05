@@ -41,7 +41,7 @@ class OrdersController extends Controller
             ]);
         }
         $order->status()->attach($order->id,['status_id'=>1]);
-        // Mail::to($user->email)->send(new OrderCreated(Order::find($order->id), $user->name));
+        Mail::to($user->email)->send(new OrderCreated(Order::find($order->id), $user->name));
         return response()->json([
             'success'=>'true',
             'order_id'=>$order->id,

@@ -64,7 +64,7 @@ class ArticlesController extends Controller
      */
     public function edit(Article $article)
     {
-        return 'Edit coming soon...';
+        return view('articles.edit',['article'=>$article]);
     }
 
     /**
@@ -76,7 +76,14 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $request['user_id']=Auth::id();
+        $stat=$article->update($request->validate([
+            'visible'=>['required'],
+            'user_id'=>['required'],
+            'article_title'=>['required','min:3','max:255'],
+            'article_content'=>['required','min:3'],
+        ]));
+        return (redirect(route('articles.edit',[$article->id]))->with('status',$stat));
     }
 
     /**
