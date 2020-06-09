@@ -15,7 +15,7 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        return Article::where('visible',1)->get();
+        return Article::where('visible',1)->with(['user:id,name','category:id,visible,category_title'])->get();
     }
 
     /**
@@ -39,12 +39,14 @@ class ArticlesController extends Controller
     {
         if ($article->visible) {
             $article->category;
+            $article->user;
             return response()->json([
                 'article_id'=>$article->id,
                 'article_title'=>$article->article_title,
                 'article_content'=>$article->article_content,
                 'categoriy_id'=>$article->categories_id,
                 'category_title'=>$article->category->category_title,
+                'author'=>$article->user->name,
                 'created_at'=>$article->created_at->toDateTimeString(),
             ]); 
         } else {
