@@ -33,7 +33,7 @@ class ProductStore extends FormRequest
             'price'=>['required','numeric'],
             'currency'=>['required','max:255'],
             'stock'=>['required','numeric','min:0'],
-            'image_id'=>'required',
+            'product_image.*'=>'required',
         ];
     }
 

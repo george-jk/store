@@ -13,6 +13,16 @@ use App\Image;
 class ImageController extends Controller
 {
     /**
+     * Display a listing of the images.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return response()->json(Image::all());
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -58,9 +68,37 @@ class ImageController extends Controller
                 'product_id'=>$request->product_id,
             ]);
 
-            return back()->with('success', 'Your file is submitted Successfully in '.$db_path.'/'.$image_name.'.'.$image_format);
+            return response()->json(['success'=> 'Your file is submitted Successfully in '.$db_path.'/'.$image_name.'.'.$image_format]);
         } else {
-            return back()->with('fail', 'Fail, No image uploaded!');
+            return response()->json(['error'=> 'Error uploading image!']);
         }
+    }
+
+    /**
+     * Show the form for editing Images
+     *
+     * @param  \App\Image  $image
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Image $image)
+    {
+        return (view('images.edit'));
+    }
+
+    /**
+     * Remove image file and DB record
+     *
+     * @param  \App\Image  $image
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Image $image)
+    {
+        $file_path=str_replace(config('app_products.products.image.db_path'),'',$image->path);
+        $storage_delete=Storage::disk('uploads')->delete($file_path);
+        $db_delete=$image->delete();
+        return response()->json([
+            'storage deleted'=>$storage_delete,
+            'database delete'=>$db_delete
+        ]);
     }
 }

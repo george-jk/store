@@ -36,7 +36,7 @@ class ProductsController extends Controller
             'product'=>['numeric', 'exists:categories,id']
         ]);
         return (view('products.index',[
-            'products'=>$this->getProducts()->paginate(6),
+            'products'=>$this->getProducts($request->product)->paginate(6),
             'categories'=>$this->getCategories()
         ]));
     }
@@ -49,9 +49,14 @@ class ProductsController extends Controller
         return $categories;
     }
 
-    private function getProducts()
+    private function getProducts($product='')
     {
-        $products=Product::select('id','visible','name')->with('images');
+        if ($product) {   
+            $products=Product::select('id','visible','name')->where('category_id',$product)->with('images');
+        } else {
+            $products=Product::select('id','visible','name')->with('images');
+        }
+        
         return $products;
     }
 
@@ -122,7 +127,13 @@ class ProductsController extends Controller
     public function update(ProductStore $request, Product $product)
     {
         $product->update($request->validated());
-        return(redirect(route('products.index')));
+        if ($request->product_image) {
+            foreach ($request->product_image as $key=>$image) {
+                Image::findOrFail($key)->product()->dissociate()->save();
+                Image::findOrFail($image)->product()->associate($product)->save();
+            }
+        }
+        return(redirect(route('products.edit',[$product->id]))->with('success','Product Updated!'));
     }
 
     /**

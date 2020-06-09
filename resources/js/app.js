@@ -20,6 +20,9 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('image-component', require('./components/ImageComponent.vue').default);
+Vue.component('add-image-component', require('./components/AddImageComponent.vue').default);
+// Vue.component('upload-image', require('./components/UploadImageComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
