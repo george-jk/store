@@ -29,6 +29,16 @@ class ArticlesController extends Controller
     }
 
     /**
+     * another try to create article
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function add()
+    {
+        return view('articles.add');
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -37,12 +47,13 @@ class ArticlesController extends Controller
     public function store(Request $request)
     {
         $request['user_id']=Auth::id();
-        return Article::create($request->validate([
+        $this->validate($request,[
             'visible'=>['required'],
             'user_id'=>['required'],
             'article_title'=>['required','min:3','max:255'],
             'article_content'=>['required','min:3'],
-        ]));
+        ]);
+        return Article::create($request->all());
     }
 
     /**
