@@ -16,7 +16,8 @@ class TermsController extends Controller
     {
         return view('terms.index',[
             'terms'=>DB::table('general_terms')->select('*')->paginate(6),
-            'terms'=>DB::table('terms_of_delivery')->select('*')->paginate(6)
+            'terms'=>DB::table('terms_of_delivery')->select('*')->paginate(6),
+            'label'=>'all'
         ]);
     }
     public function indexGeneral()
