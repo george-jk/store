@@ -6,7 +6,17 @@
 		<div class="col-md-6">
 			<div class="card mb-2">
 				<div class="card-header text-center">
-					{{ $label=='general'?__('Общи условия'):__('Условия за доставка') }}
+					@switch($label)
+						@case('general')
+						{{__('Общи условия')}}
+						@break
+						@case('delivery')
+						{{__('Условия за доставка')}}
+						@break
+						@case('all')
+						{{__('Всички')}}
+						@break
+					@endswitch
 				</div>
 				<div class="card-body">
 					<ul class="list-group list-group-flush">
