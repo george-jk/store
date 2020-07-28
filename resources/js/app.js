@@ -22,7 +22,7 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('image-component', require('./components/ImageComponent.vue').default);
 Vue.component('add-image-component', require('./components/AddImageComponent.vue').default);
-// Vue.component('upload-image', require('./components/UploadImageComponent.vue').default);
+Vue.component('format-field', require('./components/field/FormatFieldComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

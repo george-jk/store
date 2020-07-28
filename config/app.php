@@ -178,7 +178,8 @@ return [
         /*
          * Custom Service Providers...
          */
-        Barryvdh\Cors\ServiceProvider::class,
+        // Barryvdh\Cors\ServiceProvider::class,
+        // Fruitcake\Cors\ServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class
 
     ],

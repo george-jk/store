@@ -27,6 +27,7 @@ Route::prefix('admin')->middleware('verified')->group(function () {
 	Route::resource('products','ProductsController');
 	Route::resource('categories','CategoriesController');
 	Route::resource('image','ImageController');
+	Route::get('articles/add','ArticlesController@add');
 	Route::resource('articles','ArticlesController');
 	Route::get('terms/general','TermsController@indexGeneral')
 		->name('terms.general');
